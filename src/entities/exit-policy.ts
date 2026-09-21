@@ -6,6 +6,7 @@
 </non-goals>
 </MODULE_CONTRACT>
 <CHANGE_SUMMARY>
+  <item>RFC-1121: added optional verificationNote field — structured post-export verification disclaimer (spec 03 §4).</item>
   <item>RFC-1102: merged Zod schema from schemas/exit-policy.ts — schema is canonical, entity type derived via z.infer (DNA-103).</item>
   <item>RFC-1097: sweep — werkstatt-site clean, zero diagnostics workspace-wide
 
@@ -43,7 +44,7 @@ export const exitPolicySchema = policySchema
       .optional(),
     // RFC-1121 (spec 03 §4): structured verification disclaimer — states that
     // post-export trust-claim verification depends on hash-checking the bundled
-    // evidence artifacts, feedable to multiple projections.
+    // evidence artifacts, consumable by multiple projections.
     verificationNote: nonEmptyString.optional(),
   })
   .strict();
