@@ -101,7 +101,7 @@ export async function runCutoverCheck(appDirectory: string): Promise<PbpCutoverC
   let pbpTestsPass = true;
 
   try {
-    execSync("pnpm --filter @warpgogol/werkstatt-site/pbp test", { stdio: "pipe", timeout: 60000 });
+    execSync("pnpm --filter @warpgogol/pbp test", { stdio: "pipe", timeout: 60000 });
   } catch {
     pbpTestsPass = false;
     errors.push("PBP tests failed");

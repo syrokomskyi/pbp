@@ -13,7 +13,7 @@ Sweep batch 5: 90 Compass headers on headerless site files (PBP entities/project
 */
 
 /**
- * @warpgogol/werkstatt-site/pbp — Public Business Profile (PBP) entity envelope, namespace, and URI policy.
+ * @warpgogol/pbp — Public Business Profile (PBP) entity envelope, namespace, and URI policy.
  *
  * @see RFC-0399 (Namespace, Entity Envelope and URI Policy)
  * @see RFC-0400 (Primitive Types and Controlled Vocabularies)

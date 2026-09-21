@@ -128,7 +128,7 @@ export interface PbpCurrencyConversionResult extends PbpDerivationResult {
  *
  * @see RFC-0739 §7 (Full calculation trace)
  * @see RFC-0737 for PbpRateDirection
- * @see RFC-0738 for PbpRateSnapshotSource (re-exported from @warpgogol/werkstatt-site/pbp)
+ * @see RFC-0738 for PbpRateSnapshotSource (re-exported from @warpgogol/pbp)
  */
 export interface PbpCurrencyConversionTrace {
   source: {

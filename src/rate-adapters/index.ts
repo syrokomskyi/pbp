@@ -1,6 +1,6 @@
 /*
 <MODULE_CONTRACT>
-<purpose>Barrel exports for @warpgogol/werkstatt-site/pbp-rate-adapters — the public entrypoint surface for consumers (RFC-0744).</purpose>
+<purpose>Barrel exports for @warpgogol/pbp/rate-adapters — the public entrypoint surface for consumers (RFC-0744).</purpose>
 <non-goals>
   <item>Do not implement logic here — this module only re-exports the public surface.</item>
 </non-goals>
