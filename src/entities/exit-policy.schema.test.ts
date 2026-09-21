@@ -49,4 +49,23 @@ describe("exitPolicySchema", () => {
     const result = exitPolicySchema.safeParse({ ...validExitPolicy, extra: "x" });
     expect(result.success).toBe(false);
   });
+
+  it("accepts optional verificationNote (RFC-1121 AC-1)", () => {
+    const result = exitPolicySchema.safeParse({
+      ...validExitPolicy,
+      verificationNote:
+        "Verification of published trust claims requires hash-checking the bundled evidence artifacts.",
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it("rejects empty verificationNote (RFC-1121 AC-2)", () => {
+    const result = exitPolicySchema.safeParse({ ...validExitPolicy, verificationNote: "" });
+    expect(result.success).toBe(false);
+  });
+
+  it("rejects non-string verificationNote (RFC-1121 AC-2)", () => {
+    const result = exitPolicySchema.safeParse({ ...validExitPolicy, verificationNote: 42 });
+    expect(result.success).toBe(false);
+  });
 });

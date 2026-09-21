@@ -41,6 +41,10 @@ export const exitPolicySchema = policySchema
         deployableFiles: z.object({ valueRef: nonEmptyString }).optional(),
       })
       .optional(),
+    // RFC-1121 (spec 03 §4): structured verification disclaimer — states that
+    // post-export trust-claim verification depends on hash-checking the bundled
+    // evidence artifacts, feedable to multiple projections.
+    verificationNote: nonEmptyString.optional(),
   })
   .strict();
 
