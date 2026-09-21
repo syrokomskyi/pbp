@@ -1,0 +1,477 @@
+{
+  "name": "@warpgogol/pbp",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "description": "Framework-free Public Business Profile domain layer — entity contracts, compiler, derivations, projections, rate adapters (RFC-1119).",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    "./adapters/pim-adapter": {
+      "types": "./src/adapters/pim-adapter.ts",
+      "default": "./src/adapters/pim-adapter.ts"
+    },
+    "./compiler": {
+      "types": "./src/compiler/index.ts",
+      "default": "./src/compiler/index.ts"
+    },
+    "./compiler-pipeline": {
+      "types": "./src/compiler-pipeline.ts",
+      "default": "./src/compiler-pipeline.ts"
+    },
+    "./compiler/buyer-view": {
+      "types": "./src/compiler/buyer-view.ts",
+      "default": "./src/compiler/buyer-view.ts"
+    },
+    "./compiler/derivations": {
+      "types": "./src/compiler/derivations.ts",
+      "default": "./src/compiler/derivations.ts"
+    },
+    "./compiler/discover": {
+      "types": "./src/compiler/discover.ts",
+      "default": "./src/compiler/discover.ts"
+    },
+    "./compiler/entity-index": {
+      "types": "./src/compiler/entity-index.ts",
+      "default": "./src/compiler/entity-index.ts"
+    },
+    "./compiler/locale": {
+      "types": "./src/compiler/locale.ts",
+      "default": "./src/compiler/locale.ts"
+    },
+    "./compiler/materialize": {
+      "types": "./src/compiler/materialize.ts",
+      "default": "./src/compiler/materialize.ts"
+    },
+    "./compiler/overlays": {
+      "types": "./src/compiler/overlays.ts",
+      "default": "./src/compiler/overlays.ts"
+    },
+    "./compiler/parse": {
+      "types": "./src/compiler/parse.ts",
+      "default": "./src/compiler/parse.ts"
+    },
+    "./compiler/pipeline": {
+      "types": "./src/compiler/pipeline.ts",
+      "default": "./src/compiler/pipeline.ts"
+    },
+    "./compiler/profile": {
+      "types": "./src/compiler/profile.ts",
+      "default": "./src/compiler/profile.ts"
+    },
+    "./compiler/projection": {
+      "types": "./src/compiler/projection.ts",
+      "default": "./src/compiler/projection.ts"
+    },
+    "./compiler/publication": {
+      "types": "./src/compiler/publication.ts",
+      "default": "./src/compiler/publication.ts"
+    },
+    "./compiler/references": {
+      "types": "./src/compiler/references.ts",
+      "default": "./src/compiler/references.ts"
+    },
+    "./compiler/semantic": {
+      "types": "./src/compiler/semantic.ts",
+      "default": "./src/compiler/semantic.ts"
+    },
+    "./compiler/snapshot": {
+      "types": "./src/compiler/snapshot.ts",
+      "default": "./src/compiler/snapshot.ts"
+    },
+    "./compiler/types": {
+      "types": "./src/compiler/types.ts",
+      "default": "./src/compiler/types.ts"
+    },
+    "./compiler/validate": {
+      "types": "./src/compiler/validate.ts",
+      "default": "./src/compiler/validate.ts"
+    },
+    "./cutover-check": {
+      "types": "./src/cutover-check.ts",
+      "default": "./src/cutover-check.ts"
+    },
+    "./decimal": {
+      "types": "./src/decimal.ts",
+      "default": "./src/decimal.ts"
+    },
+    "./derivation": {
+      "types": "./src/derivation.ts",
+      "default": "./src/derivation.ts"
+    },
+    "./derivations/currency-conversion": {
+      "types": "./src/derivations/currency-conversion.ts",
+      "default": "./src/derivations/currency-conversion.ts"
+    },
+    "./derivations/first-year-cost": {
+      "types": "./src/derivations/first-year-cost.ts",
+      "default": "./src/derivations/first-year-cost.ts"
+    },
+    "./entities": {
+      "types": "./src/entities/index.ts",
+      "default": "./src/entities/index.ts"
+    },
+    "./entities/brand": {
+      "types": "./src/entities/brand.ts",
+      "default": "./src/entities/brand.ts"
+    },
+    "./entities/business": {
+      "types": "./src/entities/business.ts",
+      "default": "./src/entities/business.ts"
+    },
+    "./entities/buyer-view-schema": {
+      "types": "./src/entities/buyer-view-schema.ts",
+      "default": "./src/entities/buyer-view-schema.ts"
+    },
+    "./entities/catalog": {
+      "types": "./src/entities/catalog.ts",
+      "default": "./src/entities/catalog.ts"
+    },
+    "./entities/category": {
+      "types": "./src/entities/category.ts",
+      "default": "./src/entities/category.ts"
+    },
+    "./entities/claim": {
+      "types": "./src/entities/claim.ts",
+      "default": "./src/entities/claim.ts"
+    },
+    "./entities/client-testimonial": {
+      "types": "./src/entities/client-testimonial.ts",
+      "default": "./src/entities/client-testimonial.ts"
+    },
+    "./entities/comparison-profile": {
+      "types": "./src/entities/comparison-profile.ts",
+      "default": "./src/entities/comparison-profile.ts"
+    },
+    "./entities/consent": {
+      "types": "./src/entities/consent.ts",
+      "default": "./src/entities/consent.ts"
+    },
+    "./entities/contact-point": {
+      "types": "./src/entities/contact-point.ts",
+      "default": "./src/entities/contact-point.ts"
+    },
+    "./entities/credential": {
+      "types": "./src/entities/credential.ts",
+      "default": "./src/entities/credential.ts"
+    },
+    "./entities/currency-pricing-policy": {
+      "types": "./src/entities/currency-pricing-policy.ts",
+      "default": "./src/entities/currency-pricing-policy.ts"
+    },
+    "./entities/data-retention-policy": {
+      "types": "./src/entities/data-retention-policy.ts",
+      "default": "./src/entities/data-retention-policy.ts"
+    },
+    "./entities/disclosure": {
+      "types": "./src/entities/disclosure.ts",
+      "default": "./src/entities/disclosure.ts"
+    },
+    "./entities/evidence-source": {
+      "types": "./src/entities/evidence-source.ts",
+      "default": "./src/entities/evidence-source.ts"
+    },
+    "./entities/exit-policy": {
+      "types": "./src/entities/exit-policy.ts",
+      "default": "./src/entities/exit-policy.ts"
+    },
+    "./entities/fulfillment": {
+      "types": "./src/entities/fulfillment.ts",
+      "default": "./src/entities/fulfillment.ts"
+    },
+    "./entities/guarantee-policy": {
+      "types": "./src/entities/guarantee-policy.ts",
+      "default": "./src/entities/guarantee-policy.ts"
+    },
+    "./entities/legal-identity": {
+      "types": "./src/entities/legal-identity.ts",
+      "default": "./src/entities/legal-identity.ts"
+    },
+    "./entities/machine-use-policy": {
+      "types": "./src/entities/machine-use-policy.ts",
+      "default": "./src/entities/machine-use-policy.ts"
+    },
+    "./entities/offering": {
+      "types": "./src/entities/offering.ts",
+      "default": "./src/entities/offering.ts"
+    },
+    "./entities/ownership-policy": {
+      "types": "./src/entities/ownership-policy.ts",
+      "default": "./src/entities/ownership-policy.ts"
+    },
+    "./entities/place": {
+      "types": "./src/entities/place.ts",
+      "default": "./src/entities/place.ts"
+    },
+    "./entities/policy": {
+      "types": "./src/entities/policy.ts",
+      "default": "./src/entities/policy.ts"
+    },
+    "./entities/pricing": {
+      "types": "./src/entities/pricing.ts",
+      "default": "./src/entities/pricing.ts"
+    },
+    "./entities/product": {
+      "types": "./src/entities/product.ts",
+      "default": "./src/entities/product.ts"
+    },
+    "./entities/product-group": {
+      "types": "./src/entities/product-group.ts",
+      "default": "./src/entities/product-group.ts"
+    },
+    "./entities/product-variant": {
+      "types": "./src/entities/product-variant.ts",
+      "default": "./src/entities/product-variant.ts"
+    },
+    "./entities/public-document": {
+      "types": "./src/entities/public-document.ts",
+      "default": "./src/entities/public-document.ts"
+    },
+    "./entities/rate-policy": {
+      "types": "./src/entities/rate-policy.ts",
+      "default": "./src/entities/rate-policy.ts"
+    },
+    "./entities/rate-snapshot": {
+      "types": "./src/entities/rate-snapshot.ts",
+      "default": "./src/entities/rate-snapshot.ts"
+    },
+    "./entities/rate-source": {
+      "types": "./src/entities/rate-source.ts",
+      "default": "./src/entities/rate-source.ts"
+    },
+    "./entities/review": {
+      "types": "./src/entities/review.ts",
+      "default": "./src/entities/review.ts"
+    },
+    "./entities/sla-policy": {
+      "types": "./src/entities/sla-policy.ts",
+      "default": "./src/entities/sla-policy.ts"
+    },
+    "./entities/tax": {
+      "types": "./src/entities/tax.ts",
+      "default": "./src/entities/tax.ts"
+    },
+    "./entities/terms": {
+      "types": "./src/entities/terms.ts",
+      "default": "./src/entities/terms.ts"
+    },
+    "./entities/web-presence": {
+      "types": "./src/entities/web-presence.ts",
+      "default": "./src/entities/web-presence.ts"
+    },
+    "./entity-ref": {
+      "types": "./src/entity-ref.ts",
+      "default": "./src/entity-ref.ts"
+    },
+    "./envelope": {
+      "types": "./src/envelope.ts",
+      "default": "./src/envelope.ts"
+    },
+    "./incremental-processing": {
+      "types": "./src/incremental-processing.ts",
+      "default": "./src/incremental-processing.ts"
+    },
+    "./index": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./loaders": {
+      "types": "./src/loaders.ts",
+      "default": "./src/loaders.ts"
+    },
+    "./locale": {
+      "types": "./src/locale.ts",
+      "default": "./src/locale.ts"
+    },
+    "./materialized-derived-price": {
+      "types": "./src/materialized-derived-price.ts",
+      "default": "./src/materialized-derived-price.ts"
+    },
+    "./migration": {
+      "types": "./src/migration.ts",
+      "default": "./src/migration.ts"
+    },
+    "./migration-extraction": {
+      "types": "./src/migration-extraction.ts",
+      "default": "./src/migration-extraction.ts"
+    },
+    "./migration/cutover": {
+      "types": "./src/migration/cutover.ts",
+      "default": "./src/migration/cutover.ts"
+    },
+    "./migration/migration-mapping": {
+      "types": "./src/migration/migration-mapping.ts",
+      "default": "./src/migration/migration-mapping.ts"
+    },
+    "./normalization": {
+      "types": "./src/normalization.ts",
+      "default": "./src/normalization.ts"
+    },
+    "./package-manifest": {
+      "types": "./src/package-manifest.ts",
+      "default": "./src/package-manifest.ts"
+    },
+    "./primitives": {
+      "types": "./src/primitives.ts",
+      "default": "./src/primitives.ts"
+    },
+    "./projections/ai-access": {
+      "types": "./src/projections/ai-access.ts",
+      "default": "./src/projections/ai-access.ts"
+    },
+    "./projections/ai-answer": {
+      "types": "./src/projections/ai-answer.ts",
+      "default": "./src/projections/ai-answer.ts"
+    },
+    "./projections/comparison": {
+      "types": "./src/projections/comparison.ts",
+      "default": "./src/projections/comparison.ts"
+    },
+    "./projections/crm": {
+      "types": "./src/projections/crm.ts",
+      "default": "./src/projections/crm.ts"
+    },
+    "./projections/invoice": {
+      "types": "./src/projections/invoice.ts",
+      "default": "./src/projections/invoice.ts"
+    },
+    "./projections/price-projection": {
+      "types": "./src/projections/price-projection.ts",
+      "default": "./src/projections/price-projection.ts"
+    },
+    "./projections/quote-contract": {
+      "types": "./src/projections/quote-contract.ts",
+      "default": "./src/projections/quote-contract.ts"
+    },
+    "./projections/schema-org": {
+      "types": "./src/projections/schema-org.ts",
+      "default": "./src/projections/schema-org.ts"
+    },
+    "./projections/website": {
+      "types": "./src/projections/website.ts",
+      "default": "./src/projections/website.ts"
+    },
+    "./publication": {
+      "types": "./src/publication.ts",
+      "default": "./src/publication.ts"
+    },
+    "./rate-adapters": {
+      "types": "./src/rate-adapters/index.ts",
+      "default": "./src/rate-adapters/index.ts"
+    },
+    "./rate-adapters/adapters/ecb": {
+      "types": "./src/rate-adapters/adapters/ecb.ts",
+      "default": "./src/rate-adapters/adapters/ecb.ts"
+    },
+    "./rate-adapters/adapters/frankfurter": {
+      "types": "./src/rate-adapters/adapters/frankfurter.ts",
+      "default": "./src/rate-adapters/adapters/frankfurter.ts"
+    },
+    "./rate-adapters/registry": {
+      "types": "./src/rate-adapters/registry.ts",
+      "default": "./src/rate-adapters/registry.ts"
+    },
+    "./rate-adapters/types": {
+      "types": "./src/rate-adapters/types.ts",
+      "default": "./src/rate-adapters/types.ts"
+    },
+    "./reference-resolution": {
+      "types": "./src/reference-resolution.ts",
+      "default": "./src/reference-resolution.ts"
+    },
+    "./registry": {
+      "types": "./src/registry.ts",
+      "default": "./src/registry.ts"
+    },
+    "./runtime-overlay": {
+      "types": "./src/runtime-overlay.ts",
+      "default": "./src/runtime-overlay.ts"
+    },
+    "./schema-evolution": {
+      "types": "./src/schema-evolution.ts",
+      "default": "./src/schema-evolution.ts"
+    },
+    "./schema-id": {
+      "types": "./src/schema-id.ts",
+      "default": "./src/schema-id.ts"
+    },
+    "./schemas": {
+      "types": "./src/schemas/index.ts",
+      "default": "./src/schemas/index.ts"
+    },
+    "./schemas/entity-ref": {
+      "types": "./src/schemas/entity-ref.ts",
+      "default": "./src/schemas/entity-ref.ts"
+    },
+    "./schemas/envelope": {
+      "types": "./src/schemas/envelope.ts",
+      "default": "./src/schemas/envelope.ts"
+    },
+    "./schemas/primitives": {
+      "types": "./src/schemas/primitives.ts",
+      "default": "./src/schemas/primitives.ts"
+    },
+    "./semantic-model": {
+      "types": "./src/semantic-model.ts",
+      "default": "./src/semantic-model.ts"
+    },
+    "./semantic-profile": {
+      "types": "./src/semantic-profile.ts",
+      "default": "./src/semantic-profile.ts"
+    },
+    "./semantic-status": {
+      "types": "./src/semantic-status.ts",
+      "default": "./src/semantic-status.ts"
+    },
+    "./sichtpass": {
+      "types": "./src/sichtpass.ts",
+      "default": "./src/sichtpass.ts"
+    },
+    "./signature": {
+      "types": "./src/signature.ts",
+      "default": "./src/signature.ts"
+    },
+    "./source-profile": {
+      "types": "./src/source-profile.ts",
+      "default": "./src/source-profile.ts"
+    },
+    "./uri": {
+      "types": "./src/uri.ts",
+      "default": "./src/uri.ts"
+    },
+    "./utils/deep-merge": {
+      "types": "./src/utils/deep-merge.ts",
+      "default": "./src/utils/deep-merge.ts"
+    },
+    "./validation": {
+      "types": "./src/validation.ts",
+      "default": "./src/validation.ts"
+    },
+    "./validation-errors": {
+      "types": "./src/validation-errors.ts",
+      "default": "./src/validation-errors.ts"
+    }
+  },
+  "scripts": {
+    "lint": "pnpm exec eslint \"src/**/*.ts\"",
+    "typecheck": "pnpm exec tsc -p tsconfig.json --noEmit",
+    "build": "pnpm exec tsc -p tsconfig.json --noEmit",
+    "build:check": "pnpm exec tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@warpgogol/werkstatt-shared": "workspace:*",
+    "big.js": "^7.0.1",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "^26.5.1",
+    "typescript": "~5.9.3",
+    "vitest": "^5.0.0"
+  }
+}
