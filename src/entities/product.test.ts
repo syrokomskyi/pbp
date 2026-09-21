@@ -1,0 +1,24 @@
+import { describe, it, expect } from "vitest";
+import {
+  PRODUCT_SCHEMA_ID,
+  isPbpProductKind,
+  PBP_PRODUCT_KINDS,
+} from "./product.js";
+
+describe("PRODUCT_SCHEMA_ID", () => {
+  it("equals pbp/product@1", () => {
+    expect(PRODUCT_SCHEMA_ID).toBe("pbp/product@1");
+  });
+});
+
+describe("isPbpProductKind", () => {
+  it("accepts all valid product kinds", () => {
+    for (const kind of PBP_PRODUCT_KINDS) {
+      expect(isPbpProductKind(kind)).toBe(true);
+    }
+  });
+
+  it("rejects invalid kind", () => {
+    expect(isPbpProductKind("invalid")).toBe(false);
+  });
+});
