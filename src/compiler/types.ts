@@ -50,6 +50,7 @@ import type { PbpWebsiteProjection } from "../projections/website.js";
 import type { PbpAiAnswerProjection } from "../projections/ai-answer.js";
 import type { PbpPublicationSnapshot } from "../publication.js";
 import type { PbpMaterializedDerivedPrice } from "../materialized-derived-price.js";
+import type { WorkspaceIO } from "@warpgogol/werkstatt-shared/kernel/workspace-io";
 
 export interface PbpCompilerInput {
   sourceDirectory: string;
@@ -61,6 +62,8 @@ export interface PbpCompilerInput {
   buildTime?: string;
   /** RFC-1075: site origin URL for canonical URI derivation. When absent, no @id is emitted. */
   siteOrigin?: string;
+  /** RFC-1149: WorkspaceIO port for filesystem/process work. Defaults to createDefaultIO() at entry points. */
+  io?: WorkspaceIO;
 }
 
 export interface PbpResolvedGraph {

@@ -18,8 +18,8 @@ Sweep batch 5: 90 Compass headers on headerless site files (PBP entities/project
 </CHANGE_SUMMARY>
 */
 
-import { execSync } from "node:child_process";
 import type { PbpBuildContext } from "../compiler-pipeline.js";
+import { createDefaultIO, type WorkspaceIO } from "@warpgogol/werkstatt-shared/kernel/workspace-io";
 import type {
   PbpCompilerInput,
   PbpCompilerResult,
@@ -32,8 +32,9 @@ import { byteHash } from "@warpgogol/werkstatt-shared/fingerprint";
 export async function publish(
   partial: PartialCompilerResult,
   input: PbpCompilerInput,
+  io: WorkspaceIO = input.io ?? createDefaultIO().io,
 ): Promise<PbpCompilerResult> {
-  const context = buildContext(input, partial);
+  const context = await buildContext(input, partial, io);
 
   return {
     context,
@@ -51,8 +52,12 @@ export async function publish(
   };
 }
 
-function buildContext(input: PbpCompilerInput, _partial: PartialCompilerResult): PbpBuildContext {
-  const sourceRevision = getGitRevision(input.sourceDirectory);
+async function buildContext(
+  input: PbpCompilerInput,
+  _partial: PartialCompilerResult,
+  io: WorkspaceIO,
+): Promise<PbpBuildContext> {
+  const sourceRevision = await getGitRevision(input.sourceDirectory, io);
   const schemaSetDigest = byteHash("pbp-schema-set-v1");
   const derivationSetDigest = byteHash(
     (input.derivations ?? [])
@@ -73,13 +78,13 @@ function buildContext(input: PbpCompilerInput, _partial: PartialCompilerResult):
   };
 }
 
-function getGitRevision(sourceDirectory: string): string {
+async function getGitRevision(sourceDirectory: string, io: WorkspaceIO): Promise<string> {
   try {
-    return execSync("git rev-parse HEAD", {
+    const result = await io.exec("git", ["rev-parse", "HEAD"], {
       cwd: sourceDirectory,
-      encoding: "utf-8",
-      timeout: 5000,
-    }).trim();
+      timeoutMs: 5000,
+    });
+    return result.exitCode === 0 ? result.stdout.trim() : "unknown";
   } catch {
     return "unknown";
   }

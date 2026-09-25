@@ -15,8 +15,8 @@ Sweep batch 4: 73 Compass headers on headerless engine files (certification, com
 </CHANGE_SUMMARY>
 */
 
-import { readFileSync } from "node:fs";
 import { parseMarkdownFrontmatter } from "@warpgogol/werkstatt-shared/content/markdown-frontmatter";
+import { createDefaultIO, type WorkspaceIO } from "@warpgogol/werkstatt-shared/kernel/workspace-io";
 import type { PbpSourceInventoryReport } from "../compiler-pipeline.js";
 
 export interface ParsedEntity {
@@ -28,11 +28,14 @@ export interface ParsedEntity {
   schema: string;
 }
 
-export async function parse(inventory: PbpSourceInventoryReport): Promise<ParsedEntity[]> {
+export async function parse(
+  inventory: PbpSourceInventoryReport,
+  io: WorkspaceIO = createDefaultIO().io,
+): Promise<ParsedEntity[]> {
   const results: ParsedEntity[] = [];
 
   for (const source of inventory.sources) {
-    const raw = readFileSync(source.physicalPath, "utf-8");
+    const raw = await io.readFile(source.physicalPath);
     const { data, content } = parseMarkdownFrontmatter(raw);
 
     results.push({

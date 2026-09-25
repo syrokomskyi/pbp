@@ -42,7 +42,7 @@ export async function compilePbpProfile(input: PbpCompilerInput): Promise<PbpCom
   const inventory = await discover(input);
 
   // Phase 2: parse
-  const parsed = await parse(inventory);
+  const parsed = await parse(inventory, input.io);
 
   // Phase 3: raw-schema-validation
   const { entities, errors: schemaErrors } = await validateRaw(parsed, input.strictness);

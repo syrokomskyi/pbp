@@ -19,8 +19,8 @@ Sweep batch 4: 73 Compass headers on headerless engine files (certification, com
 </CHANGE_SUMMARY>
 */
 
-import { existsSync } from "node:fs";
 import { join } from "node:path";
+import { createDefaultIO, type WorkspaceIO } from "@warpgogol/werkstatt-shared/kernel/workspace-io";
 import {
   buildOrganizationProfile,
   type SemanticSiteProfile,
@@ -29,10 +29,10 @@ import { deriveCanonicalUri } from "@warpgogol/werkstatt-shared/semantic/canonic
 import { compilePbpProfile } from "./compiler/index.js";
 import type { PbpCompilerResult } from "./compiler/types.js";
 
-function resolveSourceDirectory(sourceDirectory: string): string {
-  if (existsSync(sourceDirectory)) return sourceDirectory;
+async function resolveSourceDirectory(sourceDirectory: string, io: WorkspaceIO): Promise<string> {
+  if (await io.exists(sourceDirectory)) return sourceDirectory;
   const fallback = join(process.cwd(), "src/content/business-profile");
-  if (existsSync(fallback)) return fallback;
+  if (await io.exists(fallback)) return fallback;
   return sourceDirectory;
 }
 
@@ -44,13 +44,15 @@ export type { SemanticSiteProfile };
 export async function loadTargetCurrencies(
   sourceDirectory: string,
   locale: string,
+  io: WorkspaceIO = createDefaultIO().io,
 ): Promise<Array<{ code: string; label: string }>> {
-  const resolvedDirectory = resolveSourceDirectory(sourceDirectory);
+  const resolvedDirectory = await resolveSourceDirectory(sourceDirectory, io);
   const result = await compilePbpProfile({
     sourceDirectory: resolvedDirectory,
     locale,
     defaultLocale: "de",
     strictness: "production",
+    io,
   });
   for (const entity of result.entityIndex.values()) {
     if (entity.type === "currency-pricing-policy") {
@@ -72,14 +74,16 @@ export async function buildPbpSemanticProfile(
   locale: string,
   siteUrl: URL | string,
   sourceDirectory: string,
+  io: WorkspaceIO = createDefaultIO().io,
 ): Promise<SemanticSiteProfile> {
-  const resolvedDirectory = resolveSourceDirectory(sourceDirectory);
+  const resolvedDirectory = await resolveSourceDirectory(sourceDirectory, io);
 
   const result = await compilePbpProfile({
     sourceDirectory: resolvedDirectory,
     locale,
     defaultLocale: "de",
     strictness: "production",
+    io,
   });
 
   return projectToSemanticSiteProfile(result, siteUrl);

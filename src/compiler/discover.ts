@@ -19,19 +19,22 @@ Sweep batch 5: 90 Compass headers on headerless site files (PBP entities/project
 </CHANGE_SUMMARY>
 */
 
-import { readdirSync, readFileSync } from "node:fs";
 import { join, relative, sep } from "node:path";
 import { byteHash } from "@warpgogol/werkstatt-shared/fingerprint";
 import { parseMarkdownFrontmatter } from "@warpgogol/werkstatt-shared/content/markdown-frontmatter";
+import { createDefaultIO, type WorkspaceIO } from "@warpgogol/werkstatt-shared/kernel/workspace-io";
 import type { PbpSourceInventoryEntry, PbpSourceInventoryReport } from "../compiler-pipeline.js";
 import type { PbpCompilerInput } from "./types.js";
 
-export async function discover(input: PbpCompilerInput): Promise<PbpSourceInventoryReport> {
+export async function discover(
+  input: PbpCompilerInput,
+  io: WorkspaceIO = input.io ?? createDefaultIO().io,
+): Promise<PbpSourceInventoryReport> {
   const sources: PbpSourceInventoryEntry[] = [];
-  const files = collectMdFiles(input.sourceDirectory);
+  const files = await collectMdFiles(input.sourceDirectory, io);
 
   for (const filePath of files) {
-    const raw = readFileSync(filePath, "utf-8");
+    const raw = await io.readFile(filePath);
     const { data } = parseMarkdownFrontmatter(raw);
 
     const entityId = typeof data.id === "string" ? data.id : "";
@@ -63,16 +66,16 @@ export async function discover(input: PbpCompilerInput): Promise<PbpSourceInvent
   };
 }
 
-function collectMdFiles(dir: string): string[] {
+async function collectMdFiles(dir: string, io: WorkspaceIO): Promise<string[]> {
   const results: string[] = [];
   try {
-    const entries = readdirSync(dir, { withFileTypes: true });
+    const entries = await io.readdir(dir);
     for (const entry of entries) {
       if (entry.name.startsWith("old-") || entry.name.startsWith("-")) continue;
       const fullPath = join(dir, entry.name);
-      if (entry.isDirectory()) {
-        results.push(...collectMdFiles(fullPath));
-      } else if (entry.isFile() && entry.name.endsWith(".md")) {
+      if (entry.isDirectory) {
+        results.push(...(await collectMdFiles(fullPath, io)));
+      } else if (entry.isFile && entry.name.endsWith(".md")) {
         results.push(fullPath);
       }
     }

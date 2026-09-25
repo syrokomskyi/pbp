@@ -15,9 +15,8 @@ Sweep batch 4: 73 Compass headers on headerless engine files (certification, com
 </CHANGE_SUMMARY>
 */
 
-import { execSync } from "node:child_process";
-import { existsSync, readdirSync } from "node:fs";
 import { join } from "node:path";
+import { createDefaultIO, type WorkspaceIO } from "@warpgogol/werkstatt-shared/kernel/workspace-io";
 import { compilePbpProfile } from "./compiler/index.js";
 import type { PbpCompilerResult } from "./compiler/types.js";
 
@@ -58,16 +57,19 @@ const LEGACY_FILES = [
   "meta.md",
 ];
 
-export async function runCutoverCheck(appDirectory: string): Promise<PbpCutoverCheckResult> {
+export async function runCutoverCheck(
+  appDirectory: string,
+  io: WorkspaceIO = createDefaultIO().io,
+): Promise<PbpCutoverCheckResult> {
   const errors: string[] = [];
 
   const legacyDir = join(appDirectory, "src/content/business/de");
   const pbpDir = join(appDirectory, "src/content/business-profile/de");
   const sourceDirectory = join(appDirectory, "src/content/business-profile");
 
-  const totalLegacyEntities = countLegacyEntities(legacyDir);
-  const mappedEntities = countPbpEntities(pbpDir);
-  const unmappedEntities = findUnmappedEntities(legacyDir, pbpDir);
+  const totalLegacyEntities = await countLegacyEntities(legacyDir, io);
+  const mappedEntities = await countPbpEntities(pbpDir, io);
+  const unmappedEntities = await findUnmappedEntities(legacyDir, pbpDir, io);
 
   const coverage: PbpMigrationCoverageReport = {
     totalLegacyEntities,
@@ -85,6 +87,7 @@ export async function runCutoverCheck(appDirectory: string): Promise<PbpCutoverC
       locale: "de",
       defaultLocale: "de",
       strictness: "production",
+      io,
     });
   } catch (err) {
     errors.push(`Compiler failed: ${err instanceof Error ? err.message : String(err)}`);
@@ -95,13 +98,16 @@ export async function runCutoverCheck(appDirectory: string): Promise<PbpCutoverC
     compilerResult !== undefined &&
     compilerResult.validationErrors.filter((e) => e.severity === "fatal").length === 0;
 
-  const noSiteImportsFromLegacy = checkNoLegacyImports(appDirectory);
+  const noSiteImportsFromLegacy = await checkNoLegacyImports(appDirectory, io);
 
   const legacyTestsPass = true; // No legacy layer — PBP is canonical
   let pbpTestsPass = true;
 
   try {
-    execSync("pnpm --filter @warpgogol/pbp test", { stdio: "pipe", timeout: 60000 });
+    const testResult = await io.exec("pnpm", ["--filter", "@warpgogol/pbp", "test"], {
+      timeoutMs: 60000,
+    });
+    if (testResult.exitCode !== 0) throw new Error(`exit ${testResult.exitCode}`);
   } catch {
     pbpTestsPass = false;
     errors.push("PBP tests failed");
@@ -130,21 +136,22 @@ export async function runCutoverCheck(appDirectory: string): Promise<PbpCutoverC
   };
 }
 
-function countLegacyEntities(legacyDir: string): number {
-  if (!existsSync(legacyDir)) return 0;
-  return readdirSync(legacyDir).filter((f) => f.endsWith(".md")).length;
+async function countLegacyEntities(legacyDir: string, io: WorkspaceIO): Promise<number> {
+  if (!(await io.exists(legacyDir))) return 0;
+  const entries = await io.readdir(legacyDir);
+  return entries.filter((e) => e.isFile && e.name.endsWith(".md")).length;
 }
 
-function countPbpEntities(pbpDir: string): number {
-  if (!existsSync(pbpDir)) return 0;
-  return countMarkdownFilesRecursive(pbpDir);
+async function countPbpEntities(pbpDir: string, io: WorkspaceIO): Promise<number> {
+  if (!(await io.exists(pbpDir))) return 0;
+  return countMarkdownFilesRecursive(pbpDir, io);
 }
 
-function countMarkdownFilesRecursive(dir: string): number {
+async function countMarkdownFilesRecursive(dir: string, io: WorkspaceIO): Promise<number> {
   let count = 0;
-  for (const entry of readdirSync(dir, { withFileTypes: true })) {
-    if (entry.isDirectory()) {
-      count += countMarkdownFilesRecursive(join(dir, entry.name));
+  for (const entry of await io.readdir(dir)) {
+    if (entry.isDirectory) {
+      count += await countMarkdownFilesRecursive(join(dir, entry.name), io);
     } else if (entry.name.endsWith(".md")) {
       count++;
     }
@@ -152,12 +159,16 @@ function countMarkdownFilesRecursive(dir: string): number {
   return count;
 }
 
-function findUnmappedEntities(legacyDir: string, pbpDir: string): string[] {
-  if (!existsSync(legacyDir)) return [];
-  if (!existsSync(pbpDir)) return LEGACY_FILES;
+async function findUnmappedEntities(
+  legacyDir: string,
+  pbpDir: string,
+  io: WorkspaceIO,
+): Promise<string[]> {
+  if (!(await io.exists(legacyDir))) return [];
+  if (!(await io.exists(pbpDir))) return LEGACY_FILES;
 
   const pbpFiles = new Set<string>();
-  collectMarkdownPaths(pbpDir, "", pbpFiles);
+  await collectMarkdownPaths(pbpDir, "", pbpFiles, io);
 
   const unmapped: string[] = [];
   for (const legacyFile of LEGACY_FILES) {
@@ -169,13 +180,19 @@ function findUnmappedEntities(legacyDir: string, pbpDir: string): string[] {
   return unmapped;
 }
 
-function collectMarkdownPaths(dir: string, prefix: string, out: Set<string>): void {
-  for (const entry of readdirSync(dir, { withFileTypes: true })) {
-    if (entry.isDirectory()) {
-      collectMarkdownPaths(
+async function collectMarkdownPaths(
+  dir: string,
+  prefix: string,
+  out: Set<string>,
+  io: WorkspaceIO,
+): Promise<void> {
+  for (const entry of await io.readdir(dir)) {
+    if (entry.isDirectory) {
+      await collectMarkdownPaths(
         join(dir, entry.name),
         prefix ? `${prefix}/${entry.name}` : entry.name,
         out,
+        io,
       );
     } else if (entry.name.endsWith(".md")) {
       out.add(entry.name);
@@ -183,16 +200,17 @@ function collectMarkdownPaths(dir: string, prefix: string, out: Set<string>): vo
   }
 }
 
-function checkNoLegacyImports(appDirectory: string): boolean {
+async function checkNoLegacyImports(appDirectory: string, io: WorkspaceIO): Promise<boolean> {
   const srcDir = join(appDirectory, "src");
-  if (!existsSync(srcDir)) return true;
+  if (!(await io.exists(srcDir))) return true;
 
   try {
-    const result = execSync(
-      `grep -r "@warpgogol/business" "${srcDir}" --include="*.ts" --include="*.astro" -l 2>/dev/null || true`,
-      { encoding: "utf-8", timeout: 10000 },
+    const result = await io.exec(
+      "grep",
+      ["-r", "@warpgogol/business", srcDir, "--include=*.ts", "--include=*.astro", "-l"],
+      { timeoutMs: 10000 },
     );
-    return result.trim() === "";
+    return result.stdout.trim() === "";
   } catch {
     return true;
   }
