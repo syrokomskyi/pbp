@@ -19,7 +19,6 @@ Sweep batch 4: 73 Compass headers on headerless engine files (certification, com
 </CHANGE_SUMMARY>
 */
 
-import { join } from "node:path";
 import { createDefaultIO, type WorkspaceIO } from "@warpgogol/werkstatt-shared/kernel/workspace-io";
 import {
   buildOrganizationProfile,
@@ -28,13 +27,6 @@ import {
 import { deriveCanonicalUri } from "@warpgogol/werkstatt-shared/semantic/canonical-uri";
 import { compilePbpProfile } from "./compiler/index.js";
 import type { PbpCompilerResult } from "./compiler/types.js";
-
-async function resolveSourceDirectory(sourceDirectory: string, io: WorkspaceIO): Promise<string> {
-  if (await io.exists(sourceDirectory)) return sourceDirectory;
-  const fallback = join(process.cwd(), "src/content/business-profile");
-  if (await io.exists(fallback)) return fallback;
-  return sourceDirectory;
-}
 
 // RFC-1119: buildPageSemanticModel stays in the Astro adapter — import it from
 // @warpgogol/werkstatt-site/pbp/semantic-model (it uses astro:content + import.meta.glob).
@@ -46,9 +38,8 @@ export async function loadTargetCurrencies(
   locale: string,
   io: WorkspaceIO = createDefaultIO().io,
 ): Promise<Array<{ code: string; label: string }>> {
-  const resolvedDirectory = await resolveSourceDirectory(sourceDirectory, io);
   const result = await compilePbpProfile({
-    sourceDirectory: resolvedDirectory,
+    sourceDirectory,
     locale,
     defaultLocale: "de",
     strictness: "production",
@@ -76,10 +67,8 @@ export async function buildPbpSemanticProfile(
   sourceDirectory: string,
   io: WorkspaceIO = createDefaultIO().io,
 ): Promise<SemanticSiteProfile> {
-  const resolvedDirectory = await resolveSourceDirectory(sourceDirectory, io);
-
   const result = await compilePbpProfile({
-    sourceDirectory: resolvedDirectory,
+    sourceDirectory,
     locale,
     defaultLocale: "de",
     strictness: "production",

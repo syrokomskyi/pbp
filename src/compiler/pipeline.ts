@@ -16,6 +16,7 @@ Sweep batch 4: 73 Compass headers on headerless engine files (certification, com
 </CHANGE_SUMMARY>
 */
 
+import { createDefaultIO } from "@warpgogol/werkstatt-shared/kernel/workspace-io";
 import type { PbpCompilerInput, PbpCompilerResult, PartialCompilerResult } from "./types.js";
 import { discover } from "./discover.js";
 import { parse } from "./parse.js";
@@ -38,11 +39,14 @@ import { snapshot } from "./snapshot.js";
 import { publish } from "./publication.js";
 
 export async function compilePbpProfile(input: PbpCompilerInput): Promise<PbpCompilerResult> {
+  // Single io instance resolved at the entry point — one adapter across all phases.
+  const io = input.io ?? createDefaultIO().io;
+
   // Phase 1: discover
-  const inventory = await discover(input);
+  const inventory = await discover(input, io);
 
   // Phase 2: parse
-  const parsed = await parse(inventory, input.io);
+  const parsed = await parse(inventory, io);
 
   // Phase 3: raw-schema-validation
   const { entities, errors: schemaErrors } = await validateRaw(parsed, input.strictness);
@@ -128,7 +132,7 @@ export async function compilePbpProfile(input: PbpCompilerInput): Promise<PbpCom
   });
 
   // Phase 14: publication
-  const result = await publish({ ...partialForSnapshot, publication }, input);
+  const result = await publish({ ...partialForSnapshot, publication }, input, io);
 
   return result;
 }

@@ -105,6 +105,7 @@ export async function runCutoverCheck(
 
   try {
     const testResult = await io.exec("pnpm", ["--filter", "@warpgogol/pbp", "test"], {
+      cwd: appDirectory,
       timeoutMs: 60000,
     });
     if (testResult.exitCode !== 0) throw new Error(`exit ${testResult.exitCode}`);
