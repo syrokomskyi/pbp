@@ -24,7 +24,18 @@ Contract terms live in exactly one canonical field — prose and documents bind 
 | `policies/portability.md` | `portability` | `exportPackageRef`, `continuity.*` |
 | `policies/renewal.md` | `renewal` | `renewalPeriod`, `reminder` |
 | `policies/sla.md` | `service-level` | `objectives.*`, `remedies.*` (existing, RFC-0439) |
-| `documents/*.md` | any document kind | `terms.*` record (e.g. `terms.preLitigationPeriod`, `terms.amendmentNotice`, `terms.version`) |
+| `policies/support-response.md` | `service-level` | `objectives.*` (response window), `terms.responseWithin` |
+| `policies/small-changes.md` | `service-level` | `objectives.*` (small-change window), `terms.maxEffort` |
+| `policies/availability-sla.md` | `service-level` | `objectives.*` (uptime), `terms.downtimeThreshold`, `terms.maintenanceWindow` |
+| `policies/delivery-guarantee.md` | `guarantee` | `objectives.*` (delivery window), `terms.acceptanceReminder`, `terms.acceptanceDeadline` |
+| `policies/exit-package.md` | `exit` | `deliveryTarget.duration` |
+| `policies/warranty.md` | `guarantee` | `terms.fixedPriceWarranty`, `terms.subscriptionWarranty` |
+| `policies/data-retention.md` | `data-retention` | `retention.*` — the Datenschutz retention matrix (technicalLogs, matomo, unprocessedRequest, rejectedProspect, activeOffer, projectMaterials, correspondence, accounting, aiAgentLogs, chatRecords, redisEventId, crmBuffer, makeLogs, projectArchive) |
+| `policies/backup-retention.md` | `data-retention` | `retention.backups`, `terms.restoreTarget` |
+| `business.md` | — | `presentation.businessHours`, `presentation.businessDays`, `presentation.holidaysRegion` (per-lang display strings) |
+| `offerings/*.md` | — | `terms.paymentDue` (invoice payment-due period per offering) |
+| `documents/terms.md` | — | `terms.amendmentNotice`, `terms.preLitigationPeriod`, `presentation.version`, `presentation.dates.*` |
+| `documents/*.md` | any document kind | `terms.*` record (e.g. `terms.preLitigationPeriod`, `terms.amendmentNotice`) |
 
 ## Scripts
 
