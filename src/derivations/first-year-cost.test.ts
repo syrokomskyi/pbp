@@ -1,8 +1,5 @@
 import { describe, it, expect } from "vitest";
-import type {
-  PbpFirstYearCostDerivation,
-  PbpTcoDerivation,
-} from "./first-year-cost.js";
+import type { PbpFirstYearCostDerivation, PbpTcoDerivation } from "./first-year-cost.js";
 
 describe("PbpFirstYearCostDerivation", () => {
   it("defines a valid first-year cost derivation shape", () => {

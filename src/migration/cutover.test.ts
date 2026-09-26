@@ -1,8 +1,5 @@
 import { describe, it, expect } from "vitest";
-import type {
-  PbpMigrationCoverageReport,
-  PbpCutoverChecklist,
-} from "./cutover.js";
+import type { PbpMigrationCoverageReport, PbpCutoverChecklist } from "./cutover.js";
 
 describe("PbpMigrationCoverageReport", () => {
   it("defines a valid coverage report shape", () => {

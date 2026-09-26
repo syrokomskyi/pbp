@@ -23,7 +23,10 @@ describe("productVariantSchema", () => {
   });
 
   it("rejects missing variantValues", () => {
-    const result = productVariantSchema.safeParse({ ...validProductVariant, variantValues: undefined });
+    const result = productVariantSchema.safeParse({
+      ...validProductVariant,
+      variantValues: undefined,
+    });
     expect(result.success).toBe(false);
   });
 

@@ -25,10 +25,7 @@ describe("buildEntityIndex", () => {
   });
 
   it("detects duplicate entity ID in the same locale", async () => {
-    const entities = [
-      makeEntity("biz-1", "de"),
-      makeEntity("biz-1", "de"),
-    ];
+    const entities = [makeEntity("biz-1", "de"), makeEntity("biz-1", "de")];
 
     const { index, errors } = await buildEntityIndex(entities);
 
@@ -53,7 +50,12 @@ describe("buildEntityIndex", () => {
   });
 
   it("uses empty string as locale key for entities without locale", async () => {
-    const entity: PbpEntity = { schema: "test", id: "biz-1", type: "business", status: "published" };
+    const entity: PbpEntity = {
+      schema: "test",
+      id: "biz-1",
+      type: "business",
+      status: "published",
+    };
     const { index, errors } = await buildEntityIndex([entity]);
 
     expect(errors).toHaveLength(0);
@@ -61,11 +63,7 @@ describe("buildEntityIndex", () => {
   });
 
   it("sorts entities by ID before indexing", async () => {
-    const entities = [
-      makeEntity("zzz", "de"),
-      makeEntity("aaa", "de"),
-      makeEntity("mmm", "de"),
-    ];
+    const entities = [makeEntity("zzz", "de"), makeEntity("aaa", "de"), makeEntity("mmm", "de")];
 
     const { index } = await buildEntityIndex(entities);
     const ids = [...index.keys()];

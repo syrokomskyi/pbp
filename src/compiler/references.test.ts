@@ -9,7 +9,10 @@ function makeEntity(id: string, type: string, extra: Record<string, unknown> = {
 describe("resolveReferences", () => {
   it("detects missing internal references", async () => {
     const index = new Map<string, PbpEntity>([
-      ["offering-1", makeEntity("offering-1", "offering", { productRef: { ref: "missing-product" } })],
+      [
+        "offering-1",
+        makeEntity("offering-1", "offering", { productRef: { ref: "missing-product" } }),
+      ],
     ]);
 
     const { errors } = await resolveReferences(index);
@@ -31,9 +34,12 @@ describe("resolveReferences", () => {
   it("detects type mismatch between ref and target entity", async () => {
     const index = new Map<string, PbpEntity>([
       ["cat-1", makeEntity("cat-1", "category")],
-      ["offering-1", makeEntity("offering-1", "offering", {
-        productRef: { ref: "cat-1", expectedType: "product" },
-      })],
+      [
+        "offering-1",
+        makeEntity("offering-1", "offering", {
+          productRef: { ref: "cat-1", expectedType: "product" },
+        }),
+      ],
     ]);
 
     const { errors } = await resolveReferences(index);
@@ -43,7 +49,10 @@ describe("resolveReferences", () => {
 
   it("detects locale suffixes in entity IDs", async () => {
     const index = new Map<string, PbpEntity>([
-      ["offering-1.de", makeEntity("offering-1.de", "offering", { productRef: { ref: "product-1.de" } })],
+      [
+        "offering-1.de",
+        makeEntity("offering-1.de", "offering", { productRef: { ref: "product-1.de" } }),
+      ],
     ]);
 
     const { errors } = await resolveReferences(index);
@@ -53,12 +62,18 @@ describe("resolveReferences", () => {
 
   it("detects cycles in requires relationship", async () => {
     const index = new Map<string, PbpEntity>([
-      ["off-a", makeEntity("off-a", "offering", {
-        relatedOfferings: { req1: { relation: "requires", offeringRef: { ref: "off-b" } } },
-      })],
-      ["off-b", makeEntity("off-b", "offering", {
-        relatedOfferings: { req2: { relation: "requires", offeringRef: { ref: "off-a" } } },
-      })],
+      [
+        "off-a",
+        makeEntity("off-a", "offering", {
+          relatedOfferings: { req1: { relation: "requires", offeringRef: { ref: "off-b" } } },
+        }),
+      ],
+      [
+        "off-b",
+        makeEntity("off-b", "offering", {
+          relatedOfferings: { req2: { relation: "requires", offeringRef: { ref: "off-a" } } },
+        }),
+      ],
     ]);
 
     const { cycleResults } = await resolveReferences(index);

@@ -1,8 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
-  isPbpSemanticStatus,
-  PBP_SEMANTIC_STATUSES,
-} from "./semantic-status.js";
+import { isPbpSemanticStatus, PBP_SEMANTIC_STATUSES } from "./semantic-status.js";
 
 describe("isPbpSemanticStatus", () => {
   it("accepts all valid semantic statuses", () => {

@@ -23,8 +23,13 @@ describe("policySchema", () => {
 
   it("accepts all valid policy kinds", () => {
     const kinds = [
-      "service-level", "guarantee", "ownership", "exit",
-      "data-retention", "cancellation", "price-changes",
+      "service-level",
+      "guarantee",
+      "ownership",
+      "exit",
+      "data-retention",
+      "cancellation",
+      "price-changes",
     ];
     for (const kind of kinds) {
       const result = policySchema.safeParse({ ...validPolicy, kind });
@@ -49,8 +54,13 @@ describe("policySchema", () => {
 describe("pbpPolicyKindSchema", () => {
   it("accepts all valid policy kinds", () => {
     const kinds = [
-      "service-level", "guarantee", "ownership", "exit",
-      "data-retention", "cancellation", "price-changes",
+      "service-level",
+      "guarantee",
+      "ownership",
+      "exit",
+      "data-retention",
+      "cancellation",
+      "price-changes",
     ];
     for (const kind of kinds) {
       expect(pbpPolicyKindSchema.safeParse(kind).success).toBe(true);

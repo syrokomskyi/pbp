@@ -57,7 +57,7 @@ describe("materializeDerivedPrices", () => {
     const policy = {
       sourceCurrency: "EUR",
       targetCurrencies: {
-        "usd": { currency: "USD", strategy: "derived" },
+        usd: { currency: "USD", strategy: "derived" },
       },
     } as unknown as PbpCurrencyPricingPolicy;
 
@@ -76,7 +76,7 @@ describe("materializeDerivedPrices", () => {
           pricing: {
             currency: "EUR",
             charges: {
-              "base": {
+              base: {
                 amount: { model: "fixed", value: "100.00" },
               },
             },
@@ -101,7 +101,7 @@ describe("materializeDerivedPrices", () => {
     const policy = {
       sourceCurrency: "EUR",
       targetCurrencies: {
-        "usd": { currency: "USD", strategy: "fixed" },
+        usd: { currency: "USD", strategy: "fixed" },
       },
     } as unknown as PbpCurrencyPricingPolicy;
 
@@ -120,7 +120,7 @@ describe("materializeDerivedPrices", () => {
           pricing: {
             currency: "EUR",
             charges: {
-              "base": {
+              base: {
                 amount: { model: "fixed", value: "100.00" },
               },
             },
@@ -145,7 +145,7 @@ describe("materializeDerivedPrices", () => {
     const policy = {
       sourceCurrency: "EUR",
       targetCurrencies: {
-        "usd": { currency: "USD", strategy: "derived" },
+        usd: { currency: "USD", strategy: "derived" },
       },
     } as unknown as PbpCurrencyPricingPolicy;
 
@@ -166,7 +166,7 @@ describe("materializeDerivedPrices", () => {
           pricing: {
             currency: "EUR",
             charges: {
-              "base": {
+              base: {
                 amount: { model: "fixed", value: "100.00" },
               },
             },
@@ -191,7 +191,7 @@ describe("materializeDerivedPrices", () => {
     const policy = {
       sourceCurrency: "EUR",
       targetCurrencies: {
-        "eur": { currency: "EUR", strategy: "derived" },
+        eur: { currency: "EUR", strategy: "derived" },
       },
     } as unknown as PbpCurrencyPricingPolicy;
 

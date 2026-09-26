@@ -1,9 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
-  DISCLOSURE_SCHEMA_ID,
-  isPbpDisclosureKind,
-  PBP_DISCLOSURE_KINDS,
-} from "./disclosure.js";
+import { DISCLOSURE_SCHEMA_ID, isPbpDisclosureKind, PBP_DISCLOSURE_KINDS } from "./disclosure.js";
 
 describe("DISCLOSURE_SCHEMA_ID", () => {
   it("equals pbp/disclosure@1", () => {

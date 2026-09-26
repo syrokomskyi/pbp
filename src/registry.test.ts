@@ -1,8 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
-  isPbpRegistryKind,
-  PBP_REGISTRY_KINDS,
-} from "./registry.js";
+import { isPbpRegistryKind, PBP_REGISTRY_KINDS } from "./registry.js";
 
 describe("isPbpRegistryKind", () => {
   it("accepts all valid registry kinds", () => {

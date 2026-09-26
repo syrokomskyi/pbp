@@ -1,8 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
-  isPbpComparisonStatus,
-  PBP_COMPARISON_STATUSES,
-} from "./comparison.js";
+import { isPbpComparisonStatus, PBP_COMPARISON_STATUSES } from "./comparison.js";
 
 describe("isPbpComparisonStatus", () => {
   it("accepts all valid statuses", () => {

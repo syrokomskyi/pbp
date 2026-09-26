@@ -60,9 +60,7 @@ describe("resolveLocales", () => {
   });
 
   it("falls back to default locale when target locale entity is missing", async () => {
-    const index = buildIndex([
-      makeEntity("biz-1", "de", { name: "German name" }),
-    ]);
+    const index = buildIndex([makeEntity("biz-1", "de", { name: "German name" })]);
 
     const { resolved, fallbackReport } = await resolveLocales(index, "fr", "de");
 
@@ -71,9 +69,7 @@ describe("resolveLocales", () => {
   });
 
   it("falls back to target entity when default locale is missing", async () => {
-    const index = buildIndex([
-      makeEntity("biz-1", "uk", { name: "UK name" }),
-    ]);
+    const index = buildIndex([makeEntity("biz-1", "uk", { name: "UK name" })]);
 
     const { resolved } = await resolveLocales(index, "uk", "de");
 
@@ -81,9 +77,7 @@ describe("resolveLocales", () => {
   });
 
   it("uses first available entity when neither default nor target locale exists", async () => {
-    const index = buildIndex([
-      makeEntity("biz-1", "fr", { name: "French name" }),
-    ]);
+    const index = buildIndex([makeEntity("biz-1", "fr", { name: "French name" })]);
 
     const { resolved } = await resolveLocales(index, "es", "de");
 

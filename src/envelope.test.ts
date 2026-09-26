@@ -1,8 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
-  isPbpEntityStatus,
-  PBP_ENTITY_STATUSES,
-} from "./envelope.js";
+import { isPbpEntityStatus, PBP_ENTITY_STATUSES } from "./envelope.js";
 
 describe("isPbpEntityStatus", () => {
   it("accepts all valid statuses", () => {

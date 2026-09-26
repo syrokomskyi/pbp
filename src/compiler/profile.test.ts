@@ -3,7 +3,14 @@ import { resolveProfile } from "./profile.js";
 import type { PbpEntity } from "../envelope.ts";
 
 function makeEntity(id: string, type: string, extra: Record<string, unknown> = {}): PbpEntity {
-  return { schema: "test", id, type, status: "published", name: `name-${id}`, ...extra } as PbpEntity;
+  return {
+    schema: "test",
+    id,
+    type,
+    status: "published",
+    name: `name-${id}`,
+    ...extra,
+  } as PbpEntity;
 }
 
 describe("resolveProfile", () => {
@@ -56,9 +63,7 @@ describe("resolveProfile", () => {
   });
 
   it("returns empty records for types with no entities", async () => {
-    const index = new Map<string, PbpEntity>([
-      ["biz-1", makeEntity("biz-1", "business")],
-    ]);
+    const index = new Map<string, PbpEntity>([["biz-1", makeEntity("biz-1", "business")]]);
 
     const graph = await resolveProfile(index);
 

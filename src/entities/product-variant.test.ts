@@ -1,7 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
-  PRODUCT_VARIANT_SCHEMA_ID,
-} from "./product-variant.js";
+import { PRODUCT_VARIANT_SCHEMA_ID } from "./product-variant.js";
 
 describe("PRODUCT_VARIANT_SCHEMA_ID", () => {
   it("equals pbp/product-variant@1", () => {

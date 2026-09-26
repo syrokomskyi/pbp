@@ -23,9 +23,19 @@ describe("productSchema", () => {
 
   it("accepts all valid kinds", () => {
     const kinds = [
-      "physical-good", "digital-good", "service", "composite-service",
-      "subscription-access", "license", "rental", "insurance-product",
-      "bundle", "right", "data-product", "experience", "custom-made-good",
+      "physical-good",
+      "digital-good",
+      "service",
+      "composite-service",
+      "subscription-access",
+      "license",
+      "rental",
+      "insurance-product",
+      "bundle",
+      "right",
+      "data-product",
+      "experience",
+      "custom-made-good",
     ];
     for (const kind of kinds) {
       const result = productSchema.safeParse({ ...validProduct, kind });

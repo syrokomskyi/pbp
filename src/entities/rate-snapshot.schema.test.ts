@@ -39,7 +39,10 @@ describe("rateSnapshotSchema", () => {
   it("accepts source with sourceContractRef", () => {
     const result = rateSnapshotSchema.safeParse({
       ...validRateSnapshot,
-      source: { kind: "external", sourceContractRef: { ref: "https://warpgogol.com/rate-sources/ecb" } },
+      source: {
+        kind: "external",
+        sourceContractRef: { ref: "https://warpgogol.com/rate-sources/ecb" },
+      },
     });
     expect(result.success).toBe(true);
   });

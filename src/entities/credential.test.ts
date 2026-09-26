@@ -1,9 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
-  CREDENTIAL_SCHEMA_ID,
-  isPbpCredentialKind,
-  PBP_CREDENTIAL_KINDS,
-} from "./credential.js";
+import { CREDENTIAL_SCHEMA_ID, isPbpCredentialKind, PBP_CREDENTIAL_KINDS } from "./credential.js";
 
 describe("CREDENTIAL_SCHEMA_ID", () => {
   it("equals pbp/credential@1", () => {

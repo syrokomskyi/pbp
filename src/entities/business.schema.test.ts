@@ -48,7 +48,10 @@ describe("businessSchema", () => {
   });
 
   it("rejects locale markers in ID (ADR-025)", () => {
-    const result = businessSchema.safeParse({ ...validBusiness, id: "https://example.com/de/business" });
+    const result = businessSchema.safeParse({
+      ...validBusiness,
+      id: "https://example.com/de/business",
+    });
     expect(result.success).toBe(false);
   });
 });

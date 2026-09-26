@@ -1,8 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
-  isPbpFulfillmentMode,
-  PBP_FULFILLMENT_MODES,
-} from "./fulfillment.js";
+import { isPbpFulfillmentMode, PBP_FULFILLMENT_MODES } from "./fulfillment.js";
 
 describe("isPbpFulfillmentMode", () => {
   it("accepts all valid fulfillment modes", () => {

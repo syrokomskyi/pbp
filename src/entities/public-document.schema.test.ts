@@ -24,12 +24,18 @@ describe("publicDocumentSchema", () => {
   });
 
   it("rejects missing canonicalUrl", () => {
-    const result = publicDocumentSchema.safeParse({ ...validPublicDocument, canonicalUrl: undefined });
+    const result = publicDocumentSchema.safeParse({
+      ...validPublicDocument,
+      canonicalUrl: undefined,
+    });
     expect(result.success).toBe(false);
   });
 
   it("rejects missing governance", () => {
-    const result = publicDocumentSchema.safeParse({ ...validPublicDocument, governance: undefined });
+    const result = publicDocumentSchema.safeParse({
+      ...validPublicDocument,
+      governance: undefined,
+    });
     expect(result.success).toBe(false);
   });
 

@@ -1,8 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
-  isPbpNormalizationDecision,
-  PBP_NORMALIZATION_DECISIONS,
-} from "./normalization.js";
+import { isPbpNormalizationDecision, PBP_NORMALIZATION_DECISIONS } from "./normalization.js";
 
 describe("isPbpNormalizationDecision", () => {
   it("accepts all valid decisions", () => {

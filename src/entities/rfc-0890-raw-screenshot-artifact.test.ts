@@ -104,8 +104,10 @@ describe("RFC-0890: PbpWebsiteScreenshot rawArtifact", () => {
       websiteScreenshot: {
         rawArtifact: {
           ...validRawArtifact,
-          r2Key: "warpgogol-com/screenshots/test-evidence/raw/CaptureX_2026-08-20_134440_example.com.png",
-          localPath: "trust/evidence/screenshots/test-evidence/raw/CaptureX_2026-08-20_134440_example.com.png",
+          r2Key:
+            "warpgogol-com/screenshots/test-evidence/raw/CaptureX_2026-08-20_134440_example.com.png",
+          localPath:
+            "trust/evidence/screenshots/test-evidence/raw/CaptureX_2026-08-20_134440_example.com.png",
           capturedAt: "2026-08-20T13:44:40Z",
         },
       },

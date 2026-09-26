@@ -1,9 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
-  PLACE_SCHEMA_ID,
-  isPbpPlaceKind,
-  PBP_PLACE_KINDS,
-} from "./place.js";
+import { PLACE_SCHEMA_ID, isPbpPlaceKind, PBP_PLACE_KINDS } from "./place.js";
 
 describe("PLACE_SCHEMA_ID", () => {
   it("equals pbp/place@1", () => {

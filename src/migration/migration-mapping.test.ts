@@ -1,8 +1,5 @@
 import { describe, it, expect } from "vitest";
-import type {
-  PbpLegacyToPbpFieldMap,
-  PbpMigrationMapping,
-} from "./migration-mapping.js";
+import type { PbpLegacyToPbpFieldMap, PbpMigrationMapping } from "./migration-mapping.js";
 
 describe("PbpLegacyToPbpFieldMap", () => {
   it("defines a valid field map", () => {

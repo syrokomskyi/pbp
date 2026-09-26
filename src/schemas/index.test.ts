@@ -39,9 +39,7 @@ const EXPECTED_INFRA_EXPORTS = [
 
 describe("schemas/index.ts barrel (RFC-1102)", () => {
   it("exports exactly the infrastructure surface", () => {
-    expect(Object.keys(schemasBarrel).sort()).toEqual(
-      [...EXPECTED_INFRA_EXPORTS].sort(),
-    );
+    expect(Object.keys(schemasBarrel).sort()).toEqual([...EXPECTED_INFRA_EXPORTS].sort());
   });
 
   it("does not export entity aggregates (moved to entities/index.ts)", () => {

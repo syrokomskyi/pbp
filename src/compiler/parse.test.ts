@@ -23,7 +23,13 @@ describe("parse", () => {
 
     const inventory: PbpSourceInventoryReport = {
       sources: [
-        { physicalPath: filePath, entityId: "biz-1", schema: "business", locale: "de", contentDigest: "abc" },
+        {
+          physicalPath: filePath,
+          entityId: "biz-1",
+          schema: "business",
+          locale: "de",
+          contentDigest: "abc",
+        },
       ],
       recordsDiscovered: 1,
       recordsBySchema: { business: 1 },
@@ -45,7 +51,13 @@ describe("parse", () => {
     const sources = files.map((f, i) => {
       const p = join(testDir, f);
       writeFileSync(p, `---\nid: ${ids[i]}\nschema: business\n---\nbody\n`);
-      return { physicalPath: p, entityId: ids[i]!, schema: "business", locale: "de", contentDigest: "x" };
+      return {
+        physicalPath: p,
+        entityId: ids[i]!,
+        schema: "business",
+        locale: "de",
+        contentDigest: "x",
+      };
     });
 
     const inventory: PbpSourceInventoryReport = {

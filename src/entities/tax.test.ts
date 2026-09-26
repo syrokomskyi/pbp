@@ -1,8 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
-  isPbpTaxTreatment,
-  PBP_TAX_TREATMENTS,
-} from "./tax.js";
+import { isPbpTaxTreatment, PBP_TAX_TREATMENTS } from "./tax.js";
 
 describe("isPbpTaxTreatment", () => {
   it("accepts all valid tax treatments", () => {

@@ -1,9 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
-  PRODUCT_SCHEMA_ID,
-  isPbpProductKind,
-  PBP_PRODUCT_KINDS,
-} from "./product.js";
+import { PRODUCT_SCHEMA_ID, isPbpProductKind, PBP_PRODUCT_KINDS } from "./product.js";
 
 describe("PRODUCT_SCHEMA_ID", () => {
   it("equals pbp/product@1", () => {
