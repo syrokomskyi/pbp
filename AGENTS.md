@@ -37,6 +37,8 @@ Contract terms live in exactly one canonical field — prose and documents bind 
 | `documents/terms.md` | — | `terms.amendmentNotice`, `terms.preLitigationPeriod`, `presentation.version`, `presentation.dates.*` |
 | `documents/*.md` | any document kind | `terms.*` record (e.g. `terms.preLitigationPeriod`, `terms.amendmentNotice`) |
 
+Duration bindings inside case-governing prepositional phrases MUST carry `case=` on the `| duration` pipe (nominative|accusative|genitive|dative): de `nach`/`innerhalb von`/`von`/`bis zu` → `dative`; uk `протягом`/`до`/`після` → `genitive`, `за`/`через`/`понад`/`на` → `accusative` (uk numeral-governed: few → nom.pl form, many → gen.pl form). `short` style never inflects; missing forms fall back to nominative.
+
 ## Scripts
 
 | Script        | Command                                   |
