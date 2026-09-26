@@ -11,6 +11,21 @@ RFC-1119: Framework-free Public Business Profile domain layer extracted from `@w
 - The Astro adapter surface (`astro:content` collections, `PbpContentSource` implementation) lives in `@warpgogol/werkstatt-site/pbp/astro` — never here.
 - PBP entity contracts are single-sourced in `src/entities/<name>.ts` (DNA-103): the Zod schema is canonical, the entity type is `z.infer<typeof schema>`, and `PBP_*` const arrays derive from the schema's `.options`. Never declare a parallel `interface PbpX` duplicating a schema's shape.
 
+## Contract-term canonical homes (RFC-1155)
+
+Contract terms live in exactly one canonical field — prose and documents bind to them via `=(business-profile.<collection>/<slug>.<field>)` expressions (render durations with the `| duration` pipe formatter, RFC-1156). `pbp.terms-reference.validate` (sites-check pipeline, warn-level; `--strict` promotes to blocking) detects literal drift (TERMS-DRIFT-01), dangling references (TERMS-DRIFT-02) and policy slug/kind mismatches (TERMS-KIND-01). Agents MUST place new contract terms in the canonical home below — never inline into prose.
+
+| Policy file (slug) | Kind | Terms hosted |
+| --- | --- | --- |
+| `policies/cancellation.md` | `cancellation` | `ordinaryNotice.period`, `ordinaryNotice.effective`, `extraordinaryNotice.period`, `paymentDefault.gracePeriod`, `paymentDefault.consolidationInterval` |
+| `policies/price-changes.md` | `price-changes` | `priceFixPeriod`, `announcementNotice`, `exitRight` |
+| `policies/liability.md` | `liability` | `cap.basis`, `cap.period`, `cap.exclusions[]` |
+| `policies/partner-program.md` | `partner-program` | `trustedPartners.*`, `referral.*`, `referredCustomerBenefit.*` |
+| `policies/portability.md` | `portability` | `exportPackageRef`, `continuity.*` |
+| `policies/renewal.md` | `renewal` | `renewalPeriod`, `reminder` |
+| `policies/sla.md` | `service-level` | `objectives.*`, `remedies.*` (existing, RFC-0439) |
+| `documents/*.md` | any document kind | `terms.*` record (e.g. `terms.preLitigationPeriod`, `terms.amendmentNotice`, `terms.version`) |
+
 ## Scripts
 
 | Script        | Command                                   |
