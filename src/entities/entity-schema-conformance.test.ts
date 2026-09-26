@@ -69,8 +69,8 @@ import { pbpTermsSchema, type PbpTerms } from "./terms.js";
 import { webPresenceSchema, type PbpWebPresence } from "./web-presence.js";
 
 describe("entity-schema conformance (RFC-1102, DNA-103)", () => {
-  it("pbpSchemaById enumerates exactly the 30 registered schema IDs", () => {
-    expect(Object.keys(pbpSchemaById)).toHaveLength(30);
+  it("pbpSchemaById enumerates exactly the 36 registered schema IDs", () => {
+    expect(Object.keys(pbpSchemaById)).toHaveLength(36);
   });
 
   it("entity types are z.infer of their canonical schemas", () => {

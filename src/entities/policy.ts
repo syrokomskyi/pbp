@@ -36,6 +36,10 @@ export const pbpPolicyKindSchema = z.enum([
   "data-retention",
   "cancellation",
   "price-changes",
+  "liability",
+  "partner-program",
+  "portability",
+  "renewal",
 ]);
 
 export const policySchema = pbpEntitySchema

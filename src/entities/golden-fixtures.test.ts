@@ -1044,10 +1044,17 @@ describe("pbpSchemaById registry", () => {
       "ownership-policy",
       "exit-policy",
       "data-retention-policy",
+      "cancellation-policy",
+      "liability-policy",
+      "partner-program-policy",
+      "portability-policy",
+      "price-changes-policy",
+      "renewal-policy",
       "claim",
       "evidence-source",
       "disclosure",
       "consent",
+      "client-testimonial",
       "public-document",
       "currency-pricing-policy",
       "rate-policy",
@@ -1061,7 +1068,7 @@ describe("pbpSchemaById registry", () => {
     }
   });
 
-  it("has 30 registered schemas", () => {
-    expect(Object.keys(pbpSchemaById)).toHaveLength(30);
+  it("has 36 registered schemas", () => {
+    expect(Object.keys(pbpSchemaById)).toHaveLength(36);
   });
 });

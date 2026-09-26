@@ -16,6 +16,7 @@ import { z } from "zod";
 // Entity contract modules — schema + z.infer types + derived consts (30 merged)
 export * from "./brand.js";
 export * from "./business.js";
+export * from "./cancellation-policy.js";
 export * from "./catalog.js";
 export * from "./category.js";
 export * from "./claim.js";
@@ -29,10 +30,14 @@ export * from "./evidence-source.js";
 export * from "./exit-policy.js";
 export * from "./guarantee-policy.js";
 export * from "./legal-identity.js";
+export * from "./liability-policy.js";
 export * from "./offering.js";
 export * from "./ownership-policy.js";
+export * from "./partner-program-policy.js";
 export * from "./place.js";
 export * from "./policy.js";
+export * from "./portability-policy.js";
+export * from "./price-changes-policy.js";
 export * from "./pricing.js";
 export * from "./product.js";
 export * from "./product-group.js";
@@ -41,6 +46,7 @@ export * from "./public-document.js";
 export * from "./rate-policy.js";
 export * from "./rate-snapshot.js";
 export * from "./rate-source.js";
+export * from "./renewal-policy.js";
 export * from "./sla-policy.js";
 export * from "./terms.js";
 export * from "./web-presence.js";
@@ -76,6 +82,12 @@ import { guaranteePolicySchema as _guaranteePolicy } from "./guarantee-policy.js
 import { ownershipPolicySchema as _ownershipPolicy } from "./ownership-policy.js";
 import { exitPolicySchema as _exitPolicy } from "./exit-policy.js";
 import { dataRetentionPolicySchema as _dataRetentionPolicy } from "./data-retention-policy.js";
+import { cancellationPolicySchema as _cancellationPolicy } from "./cancellation-policy.js";
+import { liabilityPolicySchema as _liabilityPolicy } from "./liability-policy.js";
+import { partnerProgramPolicySchema as _partnerProgramPolicy } from "./partner-program-policy.js";
+import { portabilityPolicySchema as _portabilityPolicy } from "./portability-policy.js";
+import { priceChangesPolicySchema as _priceChangesPolicy } from "./price-changes-policy.js";
+import { renewalPolicySchema as _renewalPolicy } from "./renewal-policy.js";
 import { claimSchema as _claim } from "./claim.js";
 import { evidenceSourceSchema as _evidenceSource } from "./evidence-source.js";
 import { disclosureSchema as _disclosure } from "./disclosure.js";
@@ -112,6 +124,12 @@ export const pbpSchemaById: Record<string, z.ZodType> = {
   [pbpSchemaId("ownership-policy")]: _ownershipPolicy,
   [pbpSchemaId("exit-policy")]: _exitPolicy,
   [pbpSchemaId("data-retention-policy")]: _dataRetentionPolicy,
+  [pbpSchemaId("cancellation-policy")]: _cancellationPolicy,
+  [pbpSchemaId("liability-policy")]: _liabilityPolicy,
+  [pbpSchemaId("partner-program-policy")]: _partnerProgramPolicy,
+  [pbpSchemaId("portability-policy")]: _portabilityPolicy,
+  [pbpSchemaId("price-changes-policy")]: _priceChangesPolicy,
+  [pbpSchemaId("renewal-policy")]: _renewalPolicy,
   [pbpSchemaId("claim")]: _claim,
   [pbpSchemaId("evidence-source")]: _evidenceSource,
   [pbpSchemaId("disclosure")]: _disclosure,
@@ -149,6 +167,12 @@ export const pbpEntityDiscriminatedUnion = z.discriminatedUnion("schema", [
   _ownershipPolicy,
   _exitPolicy,
   _dataRetentionPolicy,
+  _cancellationPolicy,
+  _liabilityPolicy,
+  _partnerProgramPolicy,
+  _portabilityPolicy,
+  _priceChangesPolicy,
+  _renewalPolicy,
   _claim,
   _evidenceSource,
   _disclosure,

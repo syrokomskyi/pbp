@@ -42,6 +42,9 @@ export const publicDocumentSchema = pbpEntitySchema
     canonicalUrl: nonEmptyString,
     governance: pbpGovernanceSchema,
     presentation: z.record(z.string(), z.unknown()).optional(),
+    // RFC-1155: canonical home for document-level contract terms
+    // (terms.amendmentNotice, terms.preLitigationPeriod, terms.version).
+    terms: z.record(z.string(), z.unknown()).optional(),
   })
   .strict();
 
