@@ -23,7 +23,7 @@ Sweep batch 5: 90 Compass headers on headerless site files (PBP entities/project
 
 import { z } from "zod";
 import { policySchema } from "./policy.js";
-import { nonEmptyString } from "../schemas/primitives.js";
+import { nonEmptyString, pbpIsoDurationSchema } from "../schemas/primitives.js";
 
 const pbpExitPackageSchema = z.object({
   domain: z.object({ included: z.boolean() }).optional(),
@@ -35,7 +35,7 @@ export const exitPolicySchema = policySchema
   .extend({
     kind: z.literal("exit"),
     trigger: z.object({ event: nonEmptyString }),
-    deliveryTarget: z.object({ duration: nonEmptyString }),
+    deliveryTarget: z.object({ duration: pbpIsoDurationSchema }),
     package: pbpExitPackageSchema,
     formats: z
       .object({

@@ -9,7 +9,7 @@ const validExitPolicy = {
   kind: "exit" as const,
   name: "Exit Policy",
   trigger: { event: "customer-request" },
-  deliveryTarget: { duration: "30-days" },
+  deliveryTarget: { duration: "P30D" },
   package: {
     domain: { included: true },
     customerContent: { included: true },

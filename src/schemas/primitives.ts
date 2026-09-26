@@ -51,7 +51,18 @@ export const pbpMoneyRangeSchema = z.object({
   maximum: pbpMoneySchema,
 });
 
-export const pbpIsoDurationSchema = nonEmptyString;
+// RFC-1155: canonical ISO-8601 duration contract — at least one component,
+// no bare "P"/"PT", no trailing "T" without time components, no weeks mixed
+// with calendar components (ISO 8601-1 §D.4.3 alternative format).
+const ISO_8601_DURATION =
+  /^P(?:\d+W|(?:\d+Y)?(?:\d+M)?(?:\d+D)?)?(?:T(?:\d+H)?(?:\d+M)?(?:\d+S)?)?$/;
+export const pbpIsoDurationSchema = nonEmptyString.refine(
+  (s) => ISO_8601_DURATION.test(s) && !/^PT?$/.test(s) && !/T$/.test(s),
+  {
+    message:
+      'Duration must be a canonical ISO 8601 duration like "P30D", "P1Y6M", "P2W", or "PT72H" (RFC-1155)',
+  },
+);
 
 export const pbpQuantitativeDurationSchema = z.object({
   value: z.number(),

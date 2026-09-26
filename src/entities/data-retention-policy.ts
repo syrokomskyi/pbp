@@ -22,10 +22,10 @@ Sweep batch 5: 90 Compass headers on headerless site files (PBP entities/project
 
 import { z } from "zod";
 import { policySchema } from "./policy.js";
-import { nonEmptyString } from "../schemas/primitives.js";
+import { nonEmptyString, pbpIsoDurationSchema } from "../schemas/primitives.js";
 
 const pbpRetentionPeriodSchema = z.object({
-  duration: nonEmptyString,
+  duration: pbpIsoDurationSchema,
   startsFrom: nonEmptyString,
 });
 
