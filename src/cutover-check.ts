@@ -12,11 +12,16 @@ Mechanical v1 to v2 header migration across the workspace: 942 files rewritten �
   <item>RFC-1097: sweep — werkstatt-engine clean
 
 Sweep batch 4: 73 Compass headers on headerless engine files (certification, component-runtime, isolation, evolution, testing), real KEY_DECISIONS on 75 files (kernel, cache, dht, swim, gitmesh, runtime), ~80 purpose expansions (CONTRACT-02/PURPOSE-02), non-goals on 13 CONTRACT-03 files, CS-07 history literal fix repo-wide (253 files). Policy: .template.ts/.template.astro excludedPaths. werkstatt-engine now 0 diagnostics.</item>
+  <item>RFC-1159: step 4 — exec.exitcode.lint command, sweep remainder, packages-check wiring</item>
 </CHANGE_SUMMARY>
 */
 
 import { join } from "node:path";
-import { createDefaultIO, type WorkspaceIO } from "@warpgogol/werkstatt-shared/kernel/workspace-io";
+import {
+  createDefaultIO,
+  execOrThrow,
+  type WorkspaceIO,
+} from "@warpgogol/werkstatt-shared/kernel/workspace-io";
 import { compilePbpProfile } from "./compiler/index.js";
 import type { PbpCompilerResult } from "./compiler/types.js";
 
@@ -206,10 +211,12 @@ async function checkNoLegacyImports(appDirectory: string, io: WorkspaceIO): Prom
   if (!(await io.exists(srcDir))) return true;
 
   try {
-    const result = await io.exec(
+    // grep exit 1 = no matches — the answer, not a failure; exit 2+ throws.
+    const result = await execOrThrow(
+      io,
       "grep",
       ["-r", "@warpgogol/business", srcDir, "--include=*.ts", "--include=*.astro", "-l"],
-      { timeoutMs: 10000 },
+      { timeoutMs: 10000, allowExitCodes: [1] },
     );
     return result.stdout.trim() === "";
   } catch {
