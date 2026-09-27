@@ -6,6 +6,9 @@
   <item>Does not handle diff path tracking — that stays in locale.ts findDiffPaths.</item>
 </non-goals>
 </MODULE_CONTRACT>
+<KEY_DECISIONS>
+  <item>JSON Merge Patch semantics — null deletes a key; arrays replace, never concatenate.</item>
+</KEY_DECISIONS>
 <CHANGE_SUMMARY>
   <item>RFC-1097: step 6 — compass.migrate codemod run
 
