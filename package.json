@@ -6,7 +6,7 @@
   "engines": {
     "node": ">=24 <25"
   },
-  "description": "Framework-free Public Business Profile domain layer — entity contracts, compiler, derivations, projections, rate adapters (RFC-1119).",
+  "description": "Framework-free Public Business Profile domain layer \u2014 entity contracts, compiler, derivations, projections, rate adapters (RFC-1119).",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "exports": {
@@ -282,10 +282,6 @@
       "types": "./src/index.ts",
       "default": "./src/index.ts"
     },
-    "./loaders": {
-      "types": "./src/loaders.ts",
-      "default": "./src/loaders.ts"
-    },
     "./locale": {
       "types": "./src/locale.ts",
       "default": "./src/locale.ts"
@@ -417,10 +413,6 @@
     "./schemas/primitives": {
       "types": "./src/schemas/primitives.ts",
       "default": "./src/schemas/primitives.ts"
-    },
-    "./semantic-model": {
-      "types": "./src/semantic-model.ts",
-      "default": "./src/semantic-model.ts"
     },
     "./semantic-profile": {
       "types": "./src/semantic-profile.ts",
