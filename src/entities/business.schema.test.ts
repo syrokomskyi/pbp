@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { businessSchema } from "./business.js";
+import { businessSchema } from "./business.ts";
 
 const validBusiness = {
   schema: "pbp/business@1",

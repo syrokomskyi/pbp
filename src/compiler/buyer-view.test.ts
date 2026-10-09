@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { assembleBuyerView } from "./buyer-view.js";
-import type { PbpResolvedGraph } from "./types.js";
+import { assembleBuyerView } from "./buyer-view.ts";
+import type { PbpResolvedGraph } from "./types.ts";
 
 function makeGraph(overrides: Record<string, unknown> = {}): PbpResolvedGraph {
   return {

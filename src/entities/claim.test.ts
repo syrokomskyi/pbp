@@ -4,7 +4,7 @@ import {
   PBP_CLAIM_CLASSES,
   PBP_CLAIM_KINDS,
   PBP_VERIFICATION_LEVELS,
-} from "./claim.js";
+} from "./claim.ts";
 
 describe("CLAIM_SCHEMA_ID", () => {
   it("equals pbp/claim@1", () => {

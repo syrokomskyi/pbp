@@ -4,14 +4,15 @@
 </MODULE_CONTRACT>
 <CHANGE_SUMMARY>
   <item>Established by RFC-0739 — 14 test vectors: 5 golden + 3 failure modes + 1 JPY + 5 rounding modes.</item>
+  <item>RFC-1249: wire werkstatt.commands.validate into packages.check + retire CMD-OUTPUT debt</item>
 </CHANGE_SUMMARY>
 */
 
 import { describe, it, expect, beforeEach, vi } from "vitest";
-import { computeCurrencyConversion } from "./currency-conversion.js";
-import type { PbpCurrencyConversionDerivation } from "./currency-conversion.js";
-import type { PbpResolvedGraph } from "../compiler/types.js";
-import type { PbpDerivationContract } from "../derivation.js";
+import { computeCurrencyConversion } from "./currency-conversion.ts";
+import type { PbpCurrencyConversionDerivation } from "./currency-conversion.ts";
+import type { PbpResolvedGraph } from "../compiler/types.ts";
+import type { PbpDerivationContract } from "../derivation.ts";
 import type { PbpRateSnapshot } from "../entities/rate-snapshot.ts";
 
 function makeSnapshot(overrides: Partial<PbpRateSnapshot> = {}): PbpRateSnapshot {

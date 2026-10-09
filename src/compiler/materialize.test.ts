@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { materializeDerivedPrices } from "./materialize.js";
-import type { PbpResolvedGraph } from "./types.js";
+import { materializeDerivedPrices } from "./materialize.ts";
+import type { PbpResolvedGraph } from "./types.ts";
 import type { PbpCurrencyPricingPolicy } from "../entities/currency-pricing-policy.ts";
 
 describe("materializeDerivedPrices", () => {

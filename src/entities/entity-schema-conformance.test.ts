@@ -7,41 +7,42 @@
 </MODULE_CONTRACT>
 <CHANGE_SUMMARY>
   <item>RFC-1102: created — type-identity assertions for all 30 paired entities (AC-3).</item>
+  <item>RFC-1249: wire werkstatt.commands.validate into packages.check + retire CMD-OUTPUT debt</item>
 </CHANGE_SUMMARY>
 */
 
 import { describe, it, expect, expectTypeOf } from "vitest";
 import type { z } from "zod";
 
-import { pbpSchemaById } from "./index.js";
+import { pbpSchemaById } from "./index.ts";
 
-import { brandSchema, type PbpBrand } from "./brand.js";
-import { businessSchema, type PbpBusiness } from "./business.js";
+import { brandSchema, type PbpBrand } from "./brand.ts";
+import { businessSchema, type PbpBusiness } from "./business.ts";
 import {
   catalogSchema,
   catalogEntrySchema,
   type PbpCatalog,
   type PbpCatalogEntry,
-} from "./catalog.js";
-import { categorySchema, type PbpCategory } from "./category.js";
-import { claimSchema, type PbpClaim } from "./claim.js";
-import { clientTestimonialSchema, type PbpClientTestimonial } from "./client-testimonial.js";
-import { consentSchema, type PbpConsent } from "./consent.js";
-import { contactPointSchema, type PbpContactPoint } from "./contact-point.js";
+} from "./catalog.ts";
+import { categorySchema, type PbpCategory } from "./category.ts";
+import { claimSchema, type PbpClaim } from "./claim.ts";
+import { clientTestimonialSchema, type PbpClientTestimonial } from "./client-testimonial.ts";
+import { consentSchema, type PbpConsent } from "./consent.ts";
+import { contactPointSchema, type PbpContactPoint } from "./contact-point.ts";
 import {
   pbpCurrencyPricingPolicySchema,
   type PbpCurrencyPricingPolicy,
-} from "./currency-pricing-policy.js";
-import { dataRetentionPolicySchema, type PbpDataRetentionPolicy } from "./data-retention-policy.js";
-import { disclosureSchema, type PbpDisclosure } from "./disclosure.js";
-import { evidenceSourceSchema, type PbpEvidenceSource } from "./evidence-source.js";
-import { exitPolicySchema, type PbpExitPolicy } from "./exit-policy.js";
-import { guaranteePolicySchema, type PbpGuaranteePolicy } from "./guarantee-policy.js";
-import { legalIdentitySchema, type PbpLegalIdentity } from "./legal-identity.js";
-import { offeringSchema, type PbpOffering } from "./offering.js";
-import { ownershipPolicySchema, type PbpOwnershipPolicy } from "./ownership-policy.js";
-import { placeSchema, type PbpPlace } from "./place.js";
-import { policySchema, type PbpPolicy } from "./policy.js";
+} from "./currency-pricing-policy.ts";
+import { dataRetentionPolicySchema, type PbpDataRetentionPolicy } from "./data-retention-policy.ts";
+import { disclosureSchema, type PbpDisclosure } from "./disclosure.ts";
+import { evidenceSourceSchema, type PbpEvidenceSource } from "./evidence-source.ts";
+import { exitPolicySchema, type PbpExitPolicy } from "./exit-policy.ts";
+import { guaranteePolicySchema, type PbpGuaranteePolicy } from "./guarantee-policy.ts";
+import { legalIdentitySchema, type PbpLegalIdentity } from "./legal-identity.ts";
+import { offeringSchema, type PbpOffering } from "./offering.ts";
+import { ownershipPolicySchema, type PbpOwnershipPolicy } from "./ownership-policy.ts";
+import { placeSchema, type PbpPlace } from "./place.ts";
+import { policySchema, type PbpPolicy } from "./policy.ts";
 import {
   pbpChargeSchema,
   pbpPlanSchema,
@@ -51,22 +52,22 @@ import {
   type PbpPlan,
   type PbpAdjustment,
   type PbpExternalCost,
-} from "./pricing.js";
-import { productSchema, type PbpProduct } from "./product.js";
-import { productGroupSchema, type PbpProductGroup } from "./product-group.js";
-import { productVariantSchema, type PbpProductVariant } from "./product-variant.js";
-import { publicDocumentSchema, type PbpPublicDocument } from "./public-document.js";
+} from "./pricing.ts";
+import { productSchema, type PbpProduct } from "./product.ts";
+import { productGroupSchema, type PbpProductGroup } from "./product-group.ts";
+import { productVariantSchema, type PbpProductVariant } from "./product-variant.ts";
+import { publicDocumentSchema, type PbpPublicDocument } from "./public-document.ts";
 import {
   pbpRatePolicySchema,
   pbpRateScheduleSchema,
   type PbpRatePolicy,
   type PbpRateSchedule,
-} from "./rate-policy.js";
-import { rateSnapshotSchema, type PbpRateSnapshot } from "./rate-snapshot.js";
-import { pbpRateSourceSchema, type PbpRateSource } from "./rate-source.js";
-import { slaPolicySchema, type PbpServiceLevelPolicy } from "./sla-policy.js";
-import { pbpTermsSchema, type PbpTerms } from "./terms.js";
-import { webPresenceSchema, type PbpWebPresence } from "./web-presence.js";
+} from "./rate-policy.ts";
+import { rateSnapshotSchema, type PbpRateSnapshot } from "./rate-snapshot.ts";
+import { pbpRateSourceSchema, type PbpRateSource } from "./rate-source.ts";
+import { slaPolicySchema, type PbpServiceLevelPolicy } from "./sla-policy.ts";
+import { pbpTermsSchema, type PbpTerms } from "./terms.ts";
+import { webPresenceSchema, type PbpWebPresence } from "./web-presence.ts";
 
 describe("entity-schema conformance (RFC-1102, DNA-103)", () => {
   it("pbpSchemaById enumerates exactly the 36 registered schema IDs", () => {

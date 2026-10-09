@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import type { PbpSchemaOrgMapping, PbpSchemaOrgLossReport } from "./schema-org.js";
+import type { PbpSchemaOrgMapping, PbpSchemaOrgLossReport } from "./schema-org.ts";
 
 describe("PbpSchemaOrgMapping", () => {
   it("defines a valid schema.org mapping", () => {

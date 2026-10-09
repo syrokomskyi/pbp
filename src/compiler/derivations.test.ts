@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
-import { runDerivations } from "./derivations.js";
-import type { PbpDerivationContract } from "../derivation.js";
-import type { PbpResolvedGraph } from "./types.js";
+import { runDerivations } from "./derivations.ts";
+import type { PbpDerivationContract } from "../derivation.ts";
+import type { PbpResolvedGraph } from "./types.ts";
 
 function makeGraph(overrides: Record<string, unknown> = {}): PbpResolvedGraph {
   return {

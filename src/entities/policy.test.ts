@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { POLICY_SCHEMA_ID, isPbpPolicyKind, PBP_POLICY_KINDS, policySchema } from "./policy.js";
+import { POLICY_SCHEMA_ID, isPbpPolicyKind, PBP_POLICY_KINDS, policySchema } from "./policy.ts";
 
 describe("POLICY_SCHEMA_ID", () => {
   it("equals pbp/policy@1", () => {

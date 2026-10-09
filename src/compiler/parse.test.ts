@@ -2,8 +2,8 @@ import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import { mkdirSync, writeFileSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
-import { parse } from "./parse.js";
-import type { PbpSourceInventoryReport } from "../compiler-pipeline.js";
+import { parse } from "./parse.ts";
+import type { PbpSourceInventoryReport } from "../compiler-pipeline.ts";
 
 let testDir: string;
 

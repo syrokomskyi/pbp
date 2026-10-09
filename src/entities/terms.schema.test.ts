@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { pbpTermsSchema } from "./terms.js";
+import { pbpTermsSchema } from "./terms.ts";
 
 describe("pbpTermsSchema", () => {
   it("parses empty object (all fields optional)", () => {

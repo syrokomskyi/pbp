@@ -4,7 +4,7 @@ import {
   pbpRateScheduleSchema,
   pbpRateModeSchema,
   pbpRateDirectionSchema,
-} from "./rate-policy.js";
+} from "./rate-policy.ts";
 
 const validRatePolicy = {
   schema: "pbp/rate-policy@1",

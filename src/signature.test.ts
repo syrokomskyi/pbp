@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { isPbpSignatureAlgorithm, PBP_SIGNATURE_ALGORITHMS } from "./signature.js";
+import { isPbpSignatureAlgorithm, PBP_SIGNATURE_ALGORITHMS } from "./signature.ts";
 
 describe("isPbpSignatureAlgorithm", () => {
   it("accepts all valid algorithms", () => {

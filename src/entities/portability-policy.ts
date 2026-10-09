@@ -8,6 +8,7 @@
 </MODULE_CONTRACT>
 <CHANGE_SUMMARY>
   <item>RFC-1155: created specialized portability policy schema — export package reference and continuity guarantees.</item>
+  <item>RFC-1249: wire werkstatt.commands.validate into packages.check + retire CMD-OUTPUT debt</item>
 </CHANGE_SUMMARY>
 */
 
@@ -22,16 +23,14 @@
  */
 
 import { z } from "zod";
-import { policySchema } from "./policy.js";
-import { pbpEntityRefSchema } from "../schemas/entity-ref.js";
+import { policySchema } from "./policy.ts";
+import { pbpEntityRefSchema } from "../schemas/entity-ref.ts";
 
 export const portabilityPolicySchema = policySchema
   .extend({
     kind: z.literal("portability"),
     exportPackageRef: pbpEntityRefSchema.optional(),
-    continuity: z
-      .object({ runnableCopy: z.boolean().optional() })
-      .optional(),
+    continuity: z.object({ runnableCopy: z.boolean().optional() }).optional(),
   })
   .strict();
 

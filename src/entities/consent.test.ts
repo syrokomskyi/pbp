@@ -5,7 +5,7 @@ import {
   isPbpConsentScopeStatus,
   PBP_CONSENT_METHODS,
   PBP_CONSENT_SCOPE_STATUSES,
-} from "./consent.js";
+} from "./consent.ts";
 
 describe("CONSENT_SCHEMA_ID", () => {
   it("equals pbp/consent@1", () => {

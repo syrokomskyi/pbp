@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { disclosureSchema } from "./disclosure.js";
+import { disclosureSchema } from "./disclosure.ts";
 
 const validDisclosure = {
   schema: "pbp/disclosure@1",

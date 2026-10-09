@@ -5,7 +5,7 @@ import {
   isPbpWebControlStatus,
   PBP_WEB_PRESENCE_KINDS,
   PBP_WEB_CONTROL_STATUSES,
-} from "./web-presence.js";
+} from "./web-presence.ts";
 
 describe("WEB_PRESENCE_SCHEMA_ID", () => {
   it("equals pbp/web-presence@1", () => {

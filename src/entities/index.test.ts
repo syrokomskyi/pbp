@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { pbpSchemaById, pbpEntityDiscriminatedUnion } from "./index.js";
+import { pbpSchemaById, pbpEntityDiscriminatedUnion } from "./index.ts";
 
 describe("pbpSchemaById registry", () => {
   it("contains schema for business", () => {

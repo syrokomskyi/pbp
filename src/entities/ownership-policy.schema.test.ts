@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { ownershipPolicySchema } from "./ownership-policy.js";
+import { ownershipPolicySchema } from "./ownership-policy.ts";
 
 const validOwnershipPolicy = {
   schema: "pbp/ownership-policy@1",

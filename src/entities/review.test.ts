@@ -4,7 +4,7 @@ import {
   AGGREGATE_RATING_SCHEMA_ID,
   isPbpReviewContentMode,
   PBP_REVIEW_CONTENT_MODES,
-} from "./review.js";
+} from "./review.ts";
 
 describe("REVIEW_SCHEMA_ID", () => {
   it("equals pbp/review@1", () => {

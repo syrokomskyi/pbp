@@ -7,11 +7,12 @@
 </MODULE_CONTRACT>
 <CHANGE_SUMMARY>
   <item>RFC-0900: established unit test coverage for client-testimonial schema.</item>
+  <item>RFC-1249: wire werkstatt.commands.validate into packages.check + retire CMD-OUTPUT debt</item>
 </CHANGE_SUMMARY>
 */
 
 import { describe, it, expect } from "vitest";
-import { clientTestimonialSchema } from "./client-testimonial.js";
+import { clientTestimonialSchema } from "./client-testimonial.ts";
 
 function makeValidBase() {
   return {

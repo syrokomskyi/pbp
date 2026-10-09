@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import type { PbpAiAnswerProjection } from "./ai-answer.js";
+import type { PbpAiAnswerProjection } from "./ai-answer.ts";
 
 describe("PbpAiAnswerProjection", () => {
   it("defines a valid AI answer projection shape", () => {

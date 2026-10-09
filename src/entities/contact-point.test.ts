@@ -3,7 +3,7 @@ import {
   CONTACT_POINT_SCHEMA_ID,
   isPbpContactChannel,
   PBP_CONTACT_CHANNELS,
-} from "./contact-point.js";
+} from "./contact-point.ts";
 
 describe("CONTACT_POINT_SCHEMA_ID", () => {
   it("equals pbp/contact-point@1", () => {

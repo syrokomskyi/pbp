@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { validateSemantic } from "./semantic.js";
-import type { PbpResolvedGraph } from "./types.js";
+import { validateSemantic } from "./semantic.ts";
+import type { PbpResolvedGraph } from "./types.ts";
 
 function makeGraph(overrides: Record<string, unknown> = {}): PbpResolvedGraph {
   return {

@@ -4,8 +4,8 @@ import {
   buildCanonicalPriceSet,
   buildCanonicalCurrencySet,
   validateSchemaOrgPrices,
-} from "./projection.js";
-import type { PbpResolvedGraph } from "./types.js";
+} from "./projection.ts";
+import type { PbpResolvedGraph } from "./types.ts";
 
 function makeGraph(overrides: Record<string, unknown> = {}): PbpResolvedGraph {
   return {

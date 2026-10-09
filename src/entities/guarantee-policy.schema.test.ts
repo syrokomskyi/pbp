@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { guaranteePolicySchema } from "./guarantee-policy.js";
+import { guaranteePolicySchema } from "./guarantee-policy.ts";
 
 const validGuaranteePolicy = {
   schema: "pbp/guarantee-policy@1",

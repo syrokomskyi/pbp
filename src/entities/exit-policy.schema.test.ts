@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { exitPolicySchema } from "./exit-policy.js";
+import { exitPolicySchema } from "./exit-policy.ts";
 
 const validExitPolicy = {
   schema: "pbp/exit-policy@1",

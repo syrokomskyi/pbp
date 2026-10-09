@@ -7,11 +7,12 @@
 </MODULE_CONTRACT>
 <CHANGE_SUMMARY>
   <item>RFC-0890: established unit test coverage for rawArtifact and optional display fields.</item>
+  <item>RFC-1249: wire werkstatt.commands.validate into packages.check + retire CMD-OUTPUT debt</item>
 </CHANGE_SUMMARY>
 */
 
 import { describe, it, expect } from "vitest";
-import { evidenceSourceSchema } from "./evidence-source.js";
+import { evidenceSourceSchema } from "./evidence-source.ts";
 
 function makeValidBase() {
   return {

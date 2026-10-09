@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { placeSchema } from "./place.js";
+import { placeSchema } from "./place.ts";
 
 const validPlace = {
   schema: "pbp/place@1",

@@ -4,7 +4,7 @@ import {
   isPbpDerivationMode,
   PBP_DERIVATION_STATUSES,
   PBP_DERIVATION_MODES,
-} from "./derivation.js";
+} from "./derivation.ts";
 
 describe("isPbpDerivationStatus", () => {
   it("accepts all valid statuses", () => {

@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import {
   isPbpDependencyInvalidationRule,
   PBP_DEPENDENCY_INVALIDATION_RULES,
-} from "./incremental-processing.js";
+} from "./incremental-processing.ts";
 
 describe("isPbpDependencyInvalidationRule", () => {
   it("accepts all valid rules", () => {

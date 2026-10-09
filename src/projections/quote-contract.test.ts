@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import type { PbpQuoteInput, PbpContractInput } from "./quote-contract.js";
+import type { PbpQuoteInput, PbpContractInput } from "./quote-contract.ts";
 
 describe("PbpQuoteInput", () => {
   it("defines a valid quote input shape", () => {

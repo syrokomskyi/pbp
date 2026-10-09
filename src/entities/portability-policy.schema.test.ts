@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { portabilityPolicySchema } from "./portability-policy.js";
+import { portabilityPolicySchema } from "./portability-policy.ts";
 
 const validPortabilityPolicy = {
   schema: "pbp/portability-policy@1",

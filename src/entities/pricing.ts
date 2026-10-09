@@ -10,6 +10,7 @@
   <item>RFC-1097: sweep — werkstatt-site clean, zero diagnostics workspace-wide
 
 Sweep batch 5: 90 Compass headers on headerless site files (PBP entities/projections/schemas, .d.ts, .css, barrels), 211 non-goals (CONTRACT-03, mostly re-export shims), ~265 purpose expansions (CONTRACT-02/PURPOSE-02), 2 CHANGE_SUMMARY additions, boilerplate purpose rewrite. Policy: domain/ui/icons/gen excludedPath (2326 generated-icon diags), .template.css excludedPath, .e2e.config.ts testPattern. compass.validate --mode error now returns 0 diagnostics across the whole workspace.</item>
+  <item>RFC-1249: wire werkstatt.commands.validate into packages.check + retire CMD-OUTPUT debt</item>
 </CHANGE_SUMMARY>
 */
 
@@ -21,8 +22,8 @@ Sweep batch 5: 90 Compass headers on headerless site files (PBP entities/project
  */
 
 import { z } from "zod";
-import { pbpEntityRefSchema } from "../schemas/entity-ref.js";
-import { nonEmptyString, decimalString } from "../schemas/primitives.js";
+import { pbpEntityRefSchema } from "../schemas/entity-ref.ts";
+import { nonEmptyString, decimalString } from "../schemas/primitives.ts";
 
 const pbpChargeTypeSchema = z.enum(["one-time", "recurring", "usage", "deposit"]);
 const pbpAmountModelSchema = z.enum(["fixed", "range", "tiered", "unit-rate"]);

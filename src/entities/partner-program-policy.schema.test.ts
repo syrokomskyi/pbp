@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { partnerProgramPolicySchema } from "./partner-program-policy.js";
+import { partnerProgramPolicySchema } from "./partner-program-policy.ts";
 
 const validPartnerProgramPolicy = {
   schema: "pbp/partner-program-policy@1",

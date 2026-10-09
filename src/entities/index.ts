@@ -8,101 +8,102 @@
 </MODULE_CONTRACT>
 <CHANGE_SUMMARY>
   <item>RFC-1102: created barrel — re-exports all 37 entity modules; relocated pbpSchemaById and pbpEntityDiscriminatedUnion from schemas/index.ts (DNA-103).</item>
+  <item>RFC-1249: wire werkstatt.commands.validate into packages.check + retire CMD-OUTPUT debt</item>
 </CHANGE_SUMMARY>
 */
 
 import { z } from "zod";
 
 // Entity contract modules — schema + z.infer types + derived consts (30 merged)
-export * from "./brand.js";
-export * from "./business.js";
-export * from "./cancellation-policy.js";
-export * from "./catalog.js";
-export * from "./category.js";
-export * from "./claim.js";
-export * from "./client-testimonial.js";
-export * from "./consent.js";
-export * from "./contact-point.js";
-export * from "./currency-pricing-policy.js";
-export * from "./data-retention-policy.js";
-export * from "./disclosure.js";
-export * from "./evidence-source.js";
-export * from "./exit-policy.js";
-export * from "./guarantee-policy.js";
-export * from "./legal-identity.js";
-export * from "./liability-policy.js";
-export * from "./offering.js";
-export * from "./ownership-policy.js";
-export * from "./partner-program-policy.js";
-export * from "./place.js";
-export * from "./policy.js";
-export * from "./portability-policy.js";
-export * from "./price-changes-policy.js";
-export * from "./pricing.js";
-export * from "./product.js";
-export * from "./product-group.js";
-export * from "./product-variant.js";
-export * from "./public-document.js";
-export * from "./rate-policy.js";
-export * from "./rate-snapshot.js";
-export * from "./rate-source.js";
-export * from "./renewal-policy.js";
-export * from "./sla-policy.js";
-export * from "./terms.js";
-export * from "./web-presence.js";
+export * from "./brand.ts";
+export * from "./business.ts";
+export * from "./cancellation-policy.ts";
+export * from "./catalog.ts";
+export * from "./category.ts";
+export * from "./claim.ts";
+export * from "./client-testimonial.ts";
+export * from "./consent.ts";
+export * from "./contact-point.ts";
+export * from "./currency-pricing-policy.ts";
+export * from "./data-retention-policy.ts";
+export * from "./disclosure.ts";
+export * from "./evidence-source.ts";
+export * from "./exit-policy.ts";
+export * from "./guarantee-policy.ts";
+export * from "./legal-identity.ts";
+export * from "./liability-policy.ts";
+export * from "./offering.ts";
+export * from "./ownership-policy.ts";
+export * from "./partner-program-policy.ts";
+export * from "./place.ts";
+export * from "./policy.ts";
+export * from "./portability-policy.ts";
+export * from "./price-changes-policy.ts";
+export * from "./pricing.ts";
+export * from "./product.ts";
+export * from "./product-group.ts";
+export * from "./product-variant.ts";
+export * from "./public-document.ts";
+export * from "./rate-policy.ts";
+export * from "./rate-snapshot.ts";
+export * from "./rate-source.ts";
+export * from "./renewal-policy.ts";
+export * from "./sla-policy.ts";
+export * from "./terms.ts";
+export * from "./web-presence.ts";
 
 // Types-only entity modules — no runtime schema (RFC-1102: nothing to merge)
-export * from "./buyer-view-schema.js";
-export * from "./comparison-profile.js";
-export * from "./credential.js";
-export * from "./fulfillment.js";
-export * from "./machine-use-policy.js";
-export * from "./review.js";
-export * from "./tax.js";
+export * from "./buyer-view-schema.ts";
+export * from "./comparison-profile.ts";
+export * from "./credential.ts";
+export * from "./fulfillment.ts";
+export * from "./machine-use-policy.ts";
+export * from "./review.ts";
+export * from "./tax.ts";
 
 // ---------------------------------------------------------------------------
 // pbpSchemaById registry — maps schema ID strings to their Zod schemas
 // ---------------------------------------------------------------------------
 
-import { businessSchema as _business } from "./business.js";
-import { legalIdentitySchema as _legalIdentity } from "./legal-identity.js";
-import { brandSchema as _brand } from "./brand.js";
-import { placeSchema as _place } from "./place.js";
-import { contactPointSchema as _contactPoint } from "./contact-point.js";
-import { webPresenceSchema as _webPresence } from "./web-presence.js";
-import { categorySchema as _category } from "./category.js";
-import { productSchema as _product } from "./product.js";
-import { productGroupSchema as _productGroup } from "./product-group.js";
-import { productVariantSchema as _productVariant } from "./product-variant.js";
-import { catalogSchema as _catalog, catalogEntrySchema as _catalogEntry } from "./catalog.js";
-import { offeringSchema as _offering } from "./offering.js";
-import { policySchema as _policy } from "./policy.js";
-import { slaPolicySchema as _slaPolicy } from "./sla-policy.js";
-import { guaranteePolicySchema as _guaranteePolicy } from "./guarantee-policy.js";
-import { ownershipPolicySchema as _ownershipPolicy } from "./ownership-policy.js";
-import { exitPolicySchema as _exitPolicy } from "./exit-policy.js";
-import { dataRetentionPolicySchema as _dataRetentionPolicy } from "./data-retention-policy.js";
-import { cancellationPolicySchema as _cancellationPolicy } from "./cancellation-policy.js";
-import { liabilityPolicySchema as _liabilityPolicy } from "./liability-policy.js";
-import { partnerProgramPolicySchema as _partnerProgramPolicy } from "./partner-program-policy.js";
-import { portabilityPolicySchema as _portabilityPolicy } from "./portability-policy.js";
-import { priceChangesPolicySchema as _priceChangesPolicy } from "./price-changes-policy.js";
-import { renewalPolicySchema as _renewalPolicy } from "./renewal-policy.js";
-import { claimSchema as _claim } from "./claim.js";
-import { evidenceSourceSchema as _evidenceSource } from "./evidence-source.js";
-import { disclosureSchema as _disclosure } from "./disclosure.js";
-import { consentSchema as _consent } from "./consent.js";
-import { clientTestimonialSchema as _clientTestimonial } from "./client-testimonial.js";
-import { publicDocumentSchema as _publicDocument } from "./public-document.js";
-import { pbpCurrencyPricingPolicySchema as _currencyPricingPolicy } from "./currency-pricing-policy.js";
+import { businessSchema as _business } from "./business.ts";
+import { legalIdentitySchema as _legalIdentity } from "./legal-identity.ts";
+import { brandSchema as _brand } from "./brand.ts";
+import { placeSchema as _place } from "./place.ts";
+import { contactPointSchema as _contactPoint } from "./contact-point.ts";
+import { webPresenceSchema as _webPresence } from "./web-presence.ts";
+import { categorySchema as _category } from "./category.ts";
+import { productSchema as _product } from "./product.ts";
+import { productGroupSchema as _productGroup } from "./product-group.ts";
+import { productVariantSchema as _productVariant } from "./product-variant.ts";
+import { catalogSchema as _catalog, catalogEntrySchema as _catalogEntry } from "./catalog.ts";
+import { offeringSchema as _offering } from "./offering.ts";
+import { policySchema as _policy } from "./policy.ts";
+import { slaPolicySchema as _slaPolicy } from "./sla-policy.ts";
+import { guaranteePolicySchema as _guaranteePolicy } from "./guarantee-policy.ts";
+import { ownershipPolicySchema as _ownershipPolicy } from "./ownership-policy.ts";
+import { exitPolicySchema as _exitPolicy } from "./exit-policy.ts";
+import { dataRetentionPolicySchema as _dataRetentionPolicy } from "./data-retention-policy.ts";
+import { cancellationPolicySchema as _cancellationPolicy } from "./cancellation-policy.ts";
+import { liabilityPolicySchema as _liabilityPolicy } from "./liability-policy.ts";
+import { partnerProgramPolicySchema as _partnerProgramPolicy } from "./partner-program-policy.ts";
+import { portabilityPolicySchema as _portabilityPolicy } from "./portability-policy.ts";
+import { priceChangesPolicySchema as _priceChangesPolicy } from "./price-changes-policy.ts";
+import { renewalPolicySchema as _renewalPolicy } from "./renewal-policy.ts";
+import { claimSchema as _claim } from "./claim.ts";
+import { evidenceSourceSchema as _evidenceSource } from "./evidence-source.ts";
+import { disclosureSchema as _disclosure } from "./disclosure.ts";
+import { consentSchema as _consent } from "./consent.ts";
+import { clientTestimonialSchema as _clientTestimonial } from "./client-testimonial.ts";
+import { publicDocumentSchema as _publicDocument } from "./public-document.ts";
+import { pbpCurrencyPricingPolicySchema as _currencyPricingPolicy } from "./currency-pricing-policy.ts";
 import {
   pbpRatePolicySchema as _ratePolicy,
   pbpRateScheduleSchema as _rateSchedule,
-} from "./rate-policy.js";
-import { rateSnapshotSchema as _rateSnapshot } from "./rate-snapshot.js";
-import { pbpRateSourceSchema as _rateSource } from "./rate-source.js";
+} from "./rate-policy.ts";
+import { rateSnapshotSchema as _rateSnapshot } from "./rate-snapshot.ts";
+import { pbpRateSourceSchema as _rateSource } from "./rate-source.ts";
 
-import { pbpSchemaId } from "../schema-id.js";
+import { pbpSchemaId } from "../schema-id.ts";
 
 export const pbpSchemaById: Record<string, z.ZodType> = {
   [pbpSchemaId("business")]: _business,

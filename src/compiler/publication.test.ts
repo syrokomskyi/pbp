@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { publish } from "./publication.js";
-import type { PbpCompilerInput, PartialCompilerResult } from "./types.js";
+import { publish } from "./publication.ts";
+import type { PbpCompilerInput, PartialCompilerResult } from "./types.ts";
 
 describe("publish", () => {
   it("assembles PbpCompilerResult from partial results and input", async () => {

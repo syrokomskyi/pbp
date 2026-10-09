@@ -4,37 +4,38 @@
 </MODULE_CONTRACT>
 <CHANGE_SUMMARY>
   <item>Established by RFC-0466 — golden fixture tests for all entity schemas.</item>
+  <item>RFC-1249: wire werkstatt.commands.validate into packages.check + retire CMD-OUTPUT debt</item>
 </CHANGE_SUMMARY>
 */
 
 import { describe, it, expect } from "vitest";
-import { businessSchema } from "./business.js";
-import { legalIdentitySchema } from "./legal-identity.js";
-import { brandSchema } from "./brand.js";
-import { placeSchema } from "./place.js";
-import { contactPointSchema } from "./contact-point.js";
-import { webPresenceSchema } from "./web-presence.js";
-import { categorySchema } from "./category.js";
-import { productSchema } from "./product.js";
-import { productGroupSchema } from "./product-group.js";
-import { productVariantSchema } from "./product-variant.js";
-import { catalogSchema, catalogEntrySchema } from "./catalog.js";
-import { offeringSchema } from "./offering.js";
-import { policySchema } from "./policy.js";
-import { slaPolicySchema } from "./sla-policy.js";
-import { guaranteePolicySchema } from "./guarantee-policy.js";
-import { ownershipPolicySchema } from "./ownership-policy.js";
-import { exitPolicySchema } from "./exit-policy.js";
-import { dataRetentionPolicySchema } from "./data-retention-policy.js";
-import { claimSchema } from "./claim.js";
-import { evidenceSourceSchema } from "./evidence-source.js";
-import { disclosureSchema } from "./disclosure.js";
-import { publicDocumentSchema } from "./public-document.js";
-import { pbpCurrencyPricingPolicySchema } from "./currency-pricing-policy.js";
-import { pbpRatePolicySchema, pbpRateScheduleSchema } from "./rate-policy.js";
-import { rateSnapshotSchema } from "./rate-snapshot.js";
-import { pbpSchemaById } from "./index.js";
-import { pbpSchemaId } from "../schema-id.js";
+import { businessSchema } from "./business.ts";
+import { legalIdentitySchema } from "./legal-identity.ts";
+import { brandSchema } from "./brand.ts";
+import { placeSchema } from "./place.ts";
+import { contactPointSchema } from "./contact-point.ts";
+import { webPresenceSchema } from "./web-presence.ts";
+import { categorySchema } from "./category.ts";
+import { productSchema } from "./product.ts";
+import { productGroupSchema } from "./product-group.ts";
+import { productVariantSchema } from "./product-variant.ts";
+import { catalogSchema, catalogEntrySchema } from "./catalog.ts";
+import { offeringSchema } from "./offering.ts";
+import { policySchema } from "./policy.ts";
+import { slaPolicySchema } from "./sla-policy.ts";
+import { guaranteePolicySchema } from "./guarantee-policy.ts";
+import { ownershipPolicySchema } from "./ownership-policy.ts";
+import { exitPolicySchema } from "./exit-policy.ts";
+import { dataRetentionPolicySchema } from "./data-retention-policy.ts";
+import { claimSchema } from "./claim.ts";
+import { evidenceSourceSchema } from "./evidence-source.ts";
+import { disclosureSchema } from "./disclosure.ts";
+import { publicDocumentSchema } from "./public-document.ts";
+import { pbpCurrencyPricingPolicySchema } from "./currency-pricing-policy.ts";
+import { pbpRatePolicySchema, pbpRateScheduleSchema } from "./rate-policy.ts";
+import { rateSnapshotSchema } from "./rate-snapshot.ts";
+import { pbpSchemaById } from "./index.ts";
+import { pbpSchemaId } from "../schema-id.ts";
 
 const baseEntity = {
   schema: "pbp/business@1",

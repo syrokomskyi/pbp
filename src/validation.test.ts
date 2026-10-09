@@ -5,7 +5,7 @@ import {
   containsHtml,
   isEmptyValue,
   DECIMAL_RE,
-} from "./validation.js";
+} from "./validation.ts";
 
 describe("validateDecimal", () => {
   it("accepts integer string", () => {

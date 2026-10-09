@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { productGroupSchema } from "./product-group.js";
+import { productGroupSchema } from "./product-group.ts";
 
 const validProductGroup = {
   schema: "pbp/product-group@1",

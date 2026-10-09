@@ -14,15 +14,16 @@ Mechanical v1 to v2 header migration across the workspace: 942 files rewritten â
   <item>RFC-1097: sweep â€” werkstatt-engine clean
 
 Sweep batch 4: 73 Compass headers on headerless engine files (certification, component-runtime, isolation, evolution, testing), real KEY_DECISIONS on 75 files (kernel, cache, dht, swim, gitmesh, runtime), ~80 purpose expansions (CONTRACT-02/PURPOSE-02), non-goals on 13 CONTRACT-03 files, CS-07 history literal fix repo-wide (253 files). Policy: .template.ts/.template.astro excludedPaths. werkstatt-engine now 0 diagnostics.</item>
+  <item>RFC-1249: wire werkstatt.commands.validate into packages.check + retire CMD-OUTPUT debt</item>
 </CHANGE_SUMMARY>
 */
 
 import type { PbpEntityRef } from "../entity-ref.ts";
-import type { PbpDerivationContract, PbpDerivationResult } from "../derivation.js";
-import type { PbpRoundingMode } from "../decimal.js";
+import type { PbpDerivationContract, PbpDerivationResult } from "../derivation.ts";
+import type { PbpRoundingMode } from "../decimal.ts";
 import type { PbpRateDirection } from "../entities/rate-policy.ts";
 import type { PbpRateSnapshotSource } from "../entities/rate-snapshot.ts";
-import type { PbpResolvedGraph } from "../compiler/types.js";
+import type { PbpResolvedGraph } from "../compiler/types.ts";
 import Big from "big.js";
 import {
   decimalMultiply,
@@ -30,7 +31,7 @@ import {
   decimalSubtract,
   decimalDivide,
   decimalRound,
-} from "../decimal.js";
+} from "../decimal.ts";
 
 const TARGET_CURRENCY_DECIMAL_PLACES: ReadonlyMap<string, number> = new Map([
   ["JPY", 0],
@@ -38,8 +39,8 @@ const TARGET_CURRENCY_DECIMAL_PLACES: ReadonlyMap<string, number> = new Map([
   ["BHD", 3],
 ]);
 
-export type { PbpRoundingMode } from "../decimal.js";
-export { PBP_ROUNDING_MODES, isPbpRoundingMode } from "../decimal.js";
+export type { PbpRoundingMode } from "../decimal.ts";
+export { PBP_ROUNDING_MODES, isPbpRoundingMode } from "../decimal.ts";
 
 /**
  * Price ending mode. Only "subtract" is supported (for ...9 and ...99 endings).

@@ -5,7 +5,7 @@ import {
   PBP_CHARGE_TYPES,
   PBP_AMOUNT_MODELS,
   PBP_TIER_METHODS,
-} from "./pricing.js";
+} from "./pricing.ts";
 
 describe("isPbpChargeType", () => {
   it("accepts all valid charge types", () => {

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { parseFrankfurterResponse, createFrankfurterAdapter } from "./adapters/frankfurter.js";
+import { parseFrankfurterResponse, createFrankfurterAdapter } from "./adapters/frankfurter.ts";
 
 const SAMPLE_RESPONSE = `{"date":"2026-08-07","base":"EUR","quote":"USD","rate":1.1546}`;
 const SAMPLE_RESPONSE_UAH = `{"date":"2026-08-07","base":"USD","quote":"UAH","rate":44.757}`;

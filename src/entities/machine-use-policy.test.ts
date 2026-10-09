@@ -5,7 +5,7 @@ import {
   isPbpMachineUseVerdict,
   PBP_MACHINE_USE_PERMISSIONS,
   PBP_MACHINE_USE_VERDICTS,
-} from "./machine-use-policy.js";
+} from "./machine-use-policy.ts";
 
 describe("MACHINE_USE_POLICY_SCHEMA_ID", () => {
   it("equals pbp/machine-use-policy@1", () => {

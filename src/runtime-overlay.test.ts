@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { isPbpOverlayStaleBehavior, PBP_OVERLAY_STALE_BEHAVIORS } from "./runtime-overlay.js";
+import { isPbpOverlayStaleBehavior, PBP_OVERLAY_STALE_BEHAVIORS } from "./runtime-overlay.ts";
 
 describe("isPbpOverlayStaleBehavior", () => {
   it("accepts all valid stale behaviors", () => {

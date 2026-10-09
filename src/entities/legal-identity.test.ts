@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { LEGAL_IDENTITY_SCHEMA_ID } from "./legal-identity.js";
+import { LEGAL_IDENTITY_SCHEMA_ID } from "./legal-identity.ts";
 
 describe("LEGAL_IDENTITY_SCHEMA_ID", () => {
   it("equals pbp/legal-identity@1", () => {

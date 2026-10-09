@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { offeringSchema } from "./offering.js";
+import { offeringSchema } from "./offering.ts";
 
 const validOffering = {
   schema: "pbp/offering@1",

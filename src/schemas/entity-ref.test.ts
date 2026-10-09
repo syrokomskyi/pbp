@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { pbpEntityRefSchema } from "./entity-ref.js";
+import { pbpEntityRefSchema } from "./entity-ref.ts";
 
 describe("pbpEntityRefSchema", () => {
   it("parses a valid entity ref with ref only", () => {

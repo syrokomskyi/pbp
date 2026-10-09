@@ -1,11 +1,11 @@
 import { describe, it, expect } from "vitest";
-import { parseEcbXml, createEcbAdapter } from "./adapters/ecb.js";
+import { parseEcbXml, createEcbAdapter } from "./adapters/ecb.ts";
 import {
   clearRateSourceAdapters,
   getRateSourceAdapter,
   registerRateSourceAdapter,
-} from "./registry.js";
-import type { RateSourceAdapter } from "./types.js";
+} from "./registry.ts";
+import type { RateSourceAdapter } from "./types.ts";
 
 const SAMPLE_XML = `<?xml version="1.0" encoding="UTF-8"?>
 <gesmes:Envelope xmlns:gesmes="http://www.gesmes.org/xml/2002-08-01" xmlns="http://www.ecb.int/vocabulary/2002-08-01/eurofxref">

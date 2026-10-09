@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { categorySchema } from "./category.js";
+import { categorySchema } from "./category.ts";
 
 const validCategory = {
   schema: "pbp/category@1",

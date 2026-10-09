@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { validatePbpUri } from "./uri.js";
+import { validatePbpUri } from "./uri.ts";
 
 describe("validatePbpUri", () => {
   it("accepts valid HTTPS URI", () => {

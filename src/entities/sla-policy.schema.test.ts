@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { slaPolicySchema } from "./sla-policy.js";
+import { slaPolicySchema } from "./sla-policy.ts";
 
 const validSlaPolicy = {
   schema: "pbp/sla-policy@1",

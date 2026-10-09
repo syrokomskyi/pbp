@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { legalIdentitySchema } from "./legal-identity.js";
+import { legalIdentitySchema } from "./legal-identity.ts";
 
 const validLegalIdentity = {
   schema: "pbp/legal-identity@1",

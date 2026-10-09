@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { resolveProfile } from "./profile.js";
+import { resolveProfile } from "./profile.ts";
 import type { PbpEntity } from "../envelope.ts";
 
 function makeEntity(id: string, type: string, extra: Record<string, unknown> = {}): PbpEntity {

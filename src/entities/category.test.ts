@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { CATEGORY_SCHEMA_ID } from "./category.js";
+import { CATEGORY_SCHEMA_ID } from "./category.ts";
 
 describe("CATEGORY_SCHEMA_ID", () => {
   it("equals pbp/category@1", () => {

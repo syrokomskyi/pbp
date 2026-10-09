@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { dataRetentionPolicySchema } from "./data-retention-policy.js";
+import { dataRetentionPolicySchema } from "./data-retention-policy.ts";
 
 const validDataRetentionPolicy = {
   schema: "pbp/data-retention-policy@1",

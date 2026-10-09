@@ -7,7 +7,7 @@ import {
   PBP_AVAILABILITY_MODES,
   PBP_OFFERING_RELATIONS,
   PBP_OFFERING_ACQUISITIONS,
-} from "./offering.js";
+} from "./offering.ts";
 
 describe("OFFERING_SCHEMA_ID", () => {
   it("equals pbp/offering@1", () => {

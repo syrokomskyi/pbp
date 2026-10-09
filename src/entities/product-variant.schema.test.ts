@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { productVariantSchema } from "./product-variant.js";
+import { productVariantSchema } from "./product-variant.ts";
 
 const validProductVariant = {
   schema: "pbp/product-variant@1",

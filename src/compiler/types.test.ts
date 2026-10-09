@@ -6,7 +6,7 @@ import type {
   PbpProjectionSet,
   PbpCompilerResult,
   PartialCompilerResult,
-} from "./types.js";
+} from "./types.ts";
 
 describe("PbpCompilerInput", () => {
   it("has required compiler input fields", () => {

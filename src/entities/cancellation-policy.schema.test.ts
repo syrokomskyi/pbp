@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { cancellationPolicySchema } from "./cancellation-policy.js";
+import { cancellationPolicySchema } from "./cancellation-policy.ts";
 
 const validCancellationPolicy = {
   schema: "pbp/cancellation-policy@1",

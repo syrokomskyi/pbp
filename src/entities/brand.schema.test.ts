@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { brandSchema } from "./brand.js";
+import { brandSchema } from "./brand.ts";
 
 const validBrand = {
   schema: "pbp/brand@1",

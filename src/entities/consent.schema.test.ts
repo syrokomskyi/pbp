@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { consentSchema } from "./consent.js";
+import { consentSchema } from "./consent.ts";
 
 const validConsent = {
   schema: "pbp/consent@1",

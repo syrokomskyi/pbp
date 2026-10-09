@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import type { PbpInvoiceInput } from "./invoice.js";
+import type { PbpInvoiceInput } from "./invoice.ts";
 
 describe("PbpInvoiceInput", () => {
   it("defines a valid invoice input shape", () => {

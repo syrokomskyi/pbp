@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { webPresenceSchema } from "./web-presence.js";
+import { webPresenceSchema } from "./web-presence.ts";
 
 const validWebPresence = {
   schema: "pbp/web-presence@1",

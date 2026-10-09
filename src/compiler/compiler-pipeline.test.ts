@@ -4,6 +4,7 @@
 </MODULE_CONTRACT>
 <CHANGE_SUMMARY>
   <item>Established by RFC-0467 — compiler pipeline golden fixture tests.</item>
+  <item>RFC-1249: wire werkstatt.commands.validate into packages.check + retire CMD-OUTPUT debt</item>
 </CHANGE_SUMMARY>
 */
 
@@ -11,14 +12,14 @@ import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import { mkdirSync, writeFileSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
-import { compilePbpProfile } from "./index.js";
+import { compilePbpProfile } from "./index.ts";
 import {
   validateSchemaOrgPrices,
   buildCanonicalPriceSet,
   buildCanonicalCurrencySet,
-} from "./index.js";
-import type { PbpCompilerInput } from "./index.js";
-import type { PbpResolvedGraph } from "./types.js";
+} from "./index.ts";
+import type { PbpCompilerInput } from "./index.ts";
+import type { PbpResolvedGraph } from "./types.ts";
 
 let testDir: string;
 

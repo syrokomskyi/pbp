@@ -3,7 +3,7 @@ import {
   COMPARISON_PROFILE_SCHEMA_ID,
   isPbpComparisonValueType,
   PBP_COMPARISON_VALUE_TYPES,
-} from "./comparison-profile.js";
+} from "./comparison-profile.ts";
 
 describe("COMPARISON_PROFILE_SCHEMA_ID", () => {
   it("equals pbp/comparison-profile@1", () => {

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { pbpRateSourceSchema } from "./rate-source.js";
+import { pbpRateSourceSchema } from "./rate-source.ts";
 
 const validRateSource = {
   schema: "pbp/rate-source@1",

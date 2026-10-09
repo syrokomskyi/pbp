@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import type { PbpWebsiteProjection } from "./website.js";
+import type { PbpWebsiteProjection } from "./website.ts";
 
 describe("PbpWebsiteProjection", () => {
   it("defines a valid website projection shape", () => {

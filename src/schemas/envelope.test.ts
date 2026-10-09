@@ -4,7 +4,7 @@ import {
   pbpEntityStatusSchema,
   entityIdSchema,
   schemaIdSchema,
-} from "./envelope.js";
+} from "./envelope.ts";
 
 describe("pbpEntityStatusSchema", () => {
   it("accepts all valid statuses", () => {

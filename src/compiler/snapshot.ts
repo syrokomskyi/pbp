@@ -16,12 +16,13 @@ Sweep batch 4: 73 Compass headers on headerless engine files (certification, com
   <item>RFC-1097: sweep — werkstatt-site clean, zero diagnostics workspace-wide
 
 Sweep batch 5: 90 Compass headers on headerless site files (PBP entities/projections/schemas, .d.ts, .css, barrels), 211 non-goals (CONTRACT-03, mostly re-export shims), ~265 purpose expansions (CONTRACT-02/PURPOSE-02), 2 CHANGE_SUMMARY additions, boilerplate purpose rewrite. Policy: domain/ui/icons/gen excludedPath (2326 generated-icon diags), .template.css excludedPath, .e2e.config.ts testPattern. compass.validate --mode error now returns 0 diagnostics across the whole workspace.</item>
+  <item>RFC-1249: wire werkstatt.commands.validate into packages.check + retire CMD-OUTPUT debt</item>
 </CHANGE_SUMMARY>
 */
 
-import type { PbpPublicationSnapshot } from "../publication.js";
-import type { PbpBuildContext } from "../compiler-pipeline.js";
-import type { PbpResolvedGraph } from "./types.js";
+import type { PbpPublicationSnapshot } from "../publication.ts";
+import type { PbpBuildContext } from "../compiler-pipeline.ts";
+import type { PbpResolvedGraph } from "./types.ts";
 
 export async function snapshot(
   _graph: PbpResolvedGraph,

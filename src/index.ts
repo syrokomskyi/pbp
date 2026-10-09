@@ -9,6 +9,7 @@
   <item>RFC-1097: sweep — werkstatt-site clean, zero diagnostics workspace-wide
 
 Sweep batch 5: 90 Compass headers on headerless site files (PBP entities/projections/schemas, .d.ts, .css, barrels), 211 non-goals (CONTRACT-03, mostly re-export shims), ~265 purpose expansions (CONTRACT-02/PURPOSE-02), 2 CHANGE_SUMMARY additions, boilerplate purpose rewrite. Policy: domain/ui/icons/gen excludedPath (2326 generated-icon diags), .template.css excludedPath, .e2e.config.ts testPattern. compass.validate --mode error now returns 0 diagnostics across the whole workspace.</item>
+  <item>RFC-1249: wire werkstatt.commands.validate into packages.check + retire CMD-OUTPUT debt</item>
 </CHANGE_SUMMARY>
 */
 
@@ -29,7 +30,7 @@ export {
   type PbpUriValidationResult,
   type PbpUriValidationOk,
   type PbpUriValidationFail,
-} from "./uri.js";
+} from "./uri.ts";
 
 export {
   type PbpEntity,
@@ -61,7 +62,7 @@ export {
   type PbpSemanticStatus,
   PBP_SEMANTIC_STATUSES,
   isPbpSemanticStatus,
-} from "./semantic-status.js";
+} from "./semantic-status.ts";
 
 export {
   DECIMAL_RE,
@@ -69,7 +70,7 @@ export {
   validateMoneyRange,
   containsHtml,
   isEmptyValue,
-} from "./validation.js";
+} from "./validation.ts";
 
 export {
   type PbpSchemaVersion,
@@ -78,23 +79,23 @@ export {
   type PbpSchemaDefinition,
   type PbpCompatibilityViolation,
   validateSchemaCompatibility,
-} from "./schema-evolution.js";
+} from "./schema-evolution.ts";
 
-export { type PbpMigrationTransformation, type PbpMigrationContract } from "./migration.js";
+export { type PbpMigrationTransformation, type PbpMigrationContract } from "./migration.ts";
 
 export {
   type PbpLocaleProfile,
   type PbpBuildConfig,
   type PbpPackageManifest,
   type PbpBuildRequest,
-} from "./package-manifest.js";
+} from "./package-manifest.ts";
 
 export {
   type PbpSourceAdapterType,
   PBP_SOURCE_ADAPTER_TYPES,
   isPbpSourceAdapterType,
   type PbpSourceProfile,
-} from "./source-profile.js";
+} from "./source-profile.ts";
 
 export { type PbpBusiness, BUSINESS_SCHEMA_ID } from "./entities/business.ts";
 
@@ -122,7 +123,7 @@ export {
   type PbpLocaleResolutionStatus,
   type PbpFallbackEntry,
   type PbpFallbackReport,
-} from "./locale.js";
+} from "./locale.ts";
 
 export {
   type PbpReferenceClass,
@@ -131,14 +132,14 @@ export {
   type PbpGraphIntegrityError,
   type PbpCycleCheckType,
   type PbpCycleCheckResult,
-} from "./reference-resolution.js";
+} from "./reference-resolution.ts";
 
 export {
   type PbpLegacySourceFile,
   type PbpMigrationDecision,
   type PbpUnresolvedItem,
   type PbpExtractionResult,
-} from "./migration-extraction.js";
+} from "./migration-extraction.ts";
 
 export { type PbpLegalIdentity, LEGAL_IDENTITY_SCHEMA_ID } from "./entities/legal-identity.ts";
 
@@ -260,7 +261,7 @@ export {
   type PbpOverlayStaleBehavior,
   PBP_OVERLAY_STALE_BEHAVIORS,
   isPbpOverlayStaleBehavior,
-} from "./runtime-overlay.js";
+} from "./runtime-overlay.ts";
 
 export {
   type PbpValidationSeverity,
@@ -270,7 +271,7 @@ export {
   isPbpValidationSeverity,
   PBP_ERROR_PREFIXES,
   isPbpErrorPrefix,
-} from "./validation-errors.js";
+} from "./validation-errors.ts";
 
 export {
   type PbpRegistryEntry,
@@ -279,7 +280,7 @@ export {
   type PbpResolverStatus,
   PBP_REGISTRY_KINDS,
   isPbpRegistryKind,
-} from "./registry.js";
+} from "./registry.ts";
 
 export {
   type PbpNormalizationDecision,
@@ -287,7 +288,7 @@ export {
   type PbpNormalizationResult,
   PBP_NORMALIZATION_DECISIONS,
   isPbpNormalizationDecision,
-} from "./normalization.js";
+} from "./normalization.ts";
 
 // RFC-0426: Bundles and Composition
 export type { PbpProductIntrinsicComposition } from "./entities/product.ts";
@@ -315,7 +316,7 @@ export {
   isPbpCompilerPhase,
   PBP_BUILD_STRICTNESSES,
   isPbpBuildStrictness,
-} from "./compiler-pipeline.js";
+} from "./compiler-pipeline.ts";
 
 // RFC-0429: Offering Core
 export {
@@ -344,7 +345,7 @@ export {
   type PbpBulkProcessingConfig,
   PBP_DEPENDENCY_INVALIDATION_RULES,
   isPbpDependencyInvalidationRule,
-} from "./incremental-processing.js";
+} from "./incremental-processing.ts";
 
 // RFC-0431: Derivation Contract
 export {
@@ -357,7 +358,7 @@ export {
   isPbpDerivationStatus,
   PBP_DERIVATION_MODES,
   isPbpDerivationMode,
-} from "./derivation.js";
+} from "./derivation.ts";
 
 // RFC-0432: Schema.org Mapping
 export {
@@ -365,10 +366,10 @@ export {
   type PbpSchemaOrgMapping,
   type PbpSchemaOrgLossEntry,
   type PbpSchemaOrgLossReport,
-} from "./projections/schema-org.js";
+} from "./projections/schema-org.ts";
 
 // RFC-0433: CRM Projection
-export { type PbpCrmPayload, type PbpCrmProjection } from "./projections/crm.js";
+export { type PbpCrmPayload, type PbpCrmProjection } from "./projections/crm.ts";
 
 // RFC-0434: MachineUsePolicy and AI Access Projections
 export {
@@ -382,7 +383,7 @@ export {
   MACHINE_USE_POLICY_SCHEMA_ID,
 } from "./entities/machine-use-policy.ts";
 
-export { type PbpAiAccessProjection } from "./projections/ai-access.js";
+export { type PbpAiAccessProjection } from "./projections/ai-access.ts";
 
 // RFC-0435: Git Revision and Publication Snapshot
 export {
@@ -395,7 +396,7 @@ export {
   type PbpPublicationSnapshot,
   PBP_CANONICAL_SERIALIZATION_STEPS,
   isPbpCanonicalSerializationStep,
-} from "./publication.js";
+} from "./publication.ts";
 
 // RFC-0436: Offering Relations — no new types (already in RFC-0429)
 
@@ -456,14 +457,14 @@ export {
 } from "./entities/buyer-view-schema.ts";
 
 // RFC-0442: Canonical Serialization — PbpJcsCanonicalization (core types in RFC-0435)
-export { type PbpJcsCanonicalization } from "./publication.js";
+export { type PbpJcsCanonicalization } from "./publication.ts";
 
 // RFC-0443: Shopify/PIM Adapter Profile
 export {
   type PbpPimAdapterProfile,
   type PbpPimEntityMapping,
   type PbpShopifyAdapterProfile,
-} from "./adapters/pim-adapter.js";
+} from "./adapters/pim-adapter.ts";
 
 // RFC-0444: Usage, Range and Tiered Pricing — no new types (already in RFC-0437)
 
@@ -535,7 +536,7 @@ export {
 export {
   type PbpFirstYearCostDerivation,
   type PbpTcoDerivation,
-} from "./derivations/first-year-cost.js";
+} from "./derivations/first-year-cost.ts";
 
 // RFC-0454: Comparison Projection
 export {
@@ -544,19 +545,19 @@ export {
   type PbpComparisonStatus,
   PBP_COMPARISON_STATUSES,
   isPbpComparisonStatus,
-} from "./projections/comparison.js";
+} from "./projections/comparison.ts";
 
 // RFC-0455: Website Projection Contract
-export { type PbpWebsiteProjection } from "./projections/website.js";
+export { type PbpWebsiteProjection } from "./projections/website.ts";
 
 // RFC-0456: AI Answer Projection
-export { type PbpAiAnswerProjection } from "./projections/ai-answer.js";
+export { type PbpAiAnswerProjection } from "./projections/ai-answer.ts";
 
 // RFC-0457: Quote and Contract Inputs
-export { type PbpQuoteInput, type PbpContractInput } from "./projections/quote-contract.js";
+export { type PbpQuoteInput, type PbpContractInput } from "./projections/quote-contract.ts";
 
 // RFC-0458: Invoice Input
-export { type PbpInvoiceInput } from "./projections/invoice.js";
+export { type PbpInvoiceInput } from "./projections/invoice.ts";
 
 // RFC-0459: Signature Envelope
 export {
@@ -564,19 +565,19 @@ export {
   type PbpSignatureAlgorithm,
   PBP_SIGNATURE_ALGORITHMS,
   isPbpSignatureAlgorithm,
-} from "./signature.js";
+} from "./signature.ts";
 
 // RFC-0460: Sichtpass / Verifiable Credential Mapping
-export { type PbpSichtpassMapping, type PbpVerifiableCredentialMapping } from "./sichtpass.js";
+export { type PbpSichtpassMapping, type PbpVerifiableCredentialMapping } from "./sichtpass.ts";
 
 // RFC-0461: Warpgogol Legacy Migration
 export {
   type PbpMigrationMapping,
   type PbpLegacyToPbpFieldMap,
-} from "./migration/migration-mapping.js";
+} from "./migration/migration-mapping.ts";
 
 // RFC-0462: Migration Coverage and Cutover
-export { type PbpMigrationCoverageReport, type PbpCutoverChecklist } from "./migration/cutover.js";
+export { type PbpMigrationCoverageReport, type PbpCutoverChecklist } from "./migration/cutover.ts";
 
 // RFC-0736: CurrencyPricingPolicy Entity
 export {
@@ -630,7 +631,7 @@ export {
   type PbpCurrencyConversionResult,
   type PbpCurrencyConversionTrace,
   computeCurrencyConversion,
-} from "./derivations/currency-conversion.js";
+} from "./derivations/currency-conversion.ts";
 
 // RFC-0739: Decimal arithmetic helpers
 export {
@@ -639,7 +640,7 @@ export {
   decimalSubtract,
   decimalDivide,
   decimalRound,
-} from "./decimal.js";
+} from "./decimal.ts";
 
 // RFC-0740: Materialized Derived Price
 export {
@@ -650,7 +651,7 @@ export {
   isPbpPriceKind,
   PBP_COMMERCIAL_MEANINGS,
   isPbpCommercialMeaning,
-} from "./materialized-derived-price.js";
+} from "./materialized-derived-price.ts";
 
 // RFC-0742: Currency-Aware Price Projection
 export {
@@ -658,4 +659,4 @@ export {
   type PbpPriceDisplayConfig,
   buildPriceProjection,
   DEFAULT_DISPLAY_CONFIG,
-} from "./projections/price-projection.js";
+} from "./projections/price-projection.ts";

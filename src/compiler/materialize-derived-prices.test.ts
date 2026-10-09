@@ -4,12 +4,13 @@
 </MODULE_CONTRACT>
 <CHANGE_SUMMARY>
   <item>Established by RFC-0740 — tests for materialization logic and validation rules.</item>
+  <item>RFC-1249: wire werkstatt.commands.validate into packages.check + retire CMD-OUTPUT debt</item>
 </CHANGE_SUMMARY>
 */
 
 import { describe, it, expect } from "vitest";
-import { materializeDerivedPrices } from "./materialize.js";
-import type { PbpResolvedGraph } from "./types.js";
+import { materializeDerivedPrices } from "./materialize.ts";
+import type { PbpResolvedGraph } from "./types.ts";
 import type { PbpCurrencyPricingPolicy } from "../entities/currency-pricing-policy.ts";
 import type { PbpOffering } from "../entities/offering.ts";
 import type { PbpRatePolicy } from "../entities/rate-policy.ts";

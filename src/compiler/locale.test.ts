@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { resolveLocales } from "./locale.js";
-import type { LocaleAwareEntityIndex } from "./entity-index.js";
+import { resolveLocales } from "./locale.ts";
+import type { LocaleAwareEntityIndex } from "./entity-index.ts";
 import type { PbpEntity } from "../envelope.ts";
 
 function makeEntity(id: string, locale: string, extra: Record<string, unknown> = {}): PbpEntity {

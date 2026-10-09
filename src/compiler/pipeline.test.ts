@@ -2,8 +2,8 @@ import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import { mkdirSync, writeFileSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
-import { compilePbpProfile } from "./pipeline.js";
-import type { PbpCompilerInput } from "./types.js";
+import { compilePbpProfile } from "./pipeline.ts";
+import type { PbpCompilerInput } from "./types.ts";
 
 let testDir: string;
 

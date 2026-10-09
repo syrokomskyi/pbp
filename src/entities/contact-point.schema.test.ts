@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { contactPointSchema } from "./contact-point.js";
+import { contactPointSchema } from "./contact-point.ts";
 
 const validContactPoint = {
   schema: "pbp/contact-point@1",

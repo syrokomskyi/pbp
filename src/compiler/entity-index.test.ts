@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { buildEntityIndex } from "./entity-index.js";
+import { buildEntityIndex } from "./entity-index.ts";
 import type { PbpEntity } from "../envelope.ts";
 
 function makeEntity(id: string, locale: string, type = "business"): PbpEntity {

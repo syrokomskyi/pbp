@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { validateSchemaCompatibility, type PbpSchemaDefinition } from "./schema-evolution.js";
+import { validateSchemaCompatibility, type PbpSchemaDefinition } from "./schema-evolution.ts";
 
 describe("validateSchemaCompatibility", () => {
   it("returns ok when schemas are identical", () => {

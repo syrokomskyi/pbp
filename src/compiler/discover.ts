@@ -16,6 +16,7 @@ Sweep batch 4: 73 Compass headers on headerless engine files (certification, com
   <item>RFC-1097: sweep — werkstatt-site clean, zero diagnostics workspace-wide
 
 Sweep batch 5: 90 Compass headers on headerless site files (PBP entities/projections/schemas, .d.ts, .css, barrels), 211 non-goals (CONTRACT-03, mostly re-export shims), ~265 purpose expansions (CONTRACT-02/PURPOSE-02), 2 CHANGE_SUMMARY additions, boilerplate purpose rewrite. Policy: domain/ui/icons/gen excludedPath (2326 generated-icon diags), .template.css excludedPath, .e2e.config.ts testPattern. compass.validate --mode error now returns 0 diagnostics across the whole workspace.</item>
+  <item>RFC-1249: wire werkstatt.commands.validate into packages.check + retire CMD-OUTPUT debt</item>
 </CHANGE_SUMMARY>
 */
 
@@ -23,8 +24,8 @@ import { join, relative, sep } from "node:path";
 import { byteHash } from "@warpgogol/werkstatt-shared/fingerprint";
 import { parseMarkdownFrontmatter } from "@warpgogol/werkstatt-shared/content/markdown-frontmatter";
 import { createDefaultIO, type WorkspaceIO } from "@warpgogol/werkstatt-shared/kernel/workspace-io";
-import type { PbpSourceInventoryEntry, PbpSourceInventoryReport } from "../compiler-pipeline.js";
-import type { PbpCompilerInput } from "./types.js";
+import type { PbpSourceInventoryEntry, PbpSourceInventoryReport } from "../compiler-pipeline.ts";
+import type { PbpCompilerInput } from "./types.ts";
 
 export async function discover(
   input: PbpCompilerInput,

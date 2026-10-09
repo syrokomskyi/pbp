@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { BRAND_SCHEMA_ID } from "./brand.js";
+import { BRAND_SCHEMA_ID } from "./brand.ts";
 
 describe("BRAND_SCHEMA_ID", () => {
   it("equals pbp/brand@1", () => {

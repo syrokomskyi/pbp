@@ -8,6 +8,7 @@
 </MODULE_CONTRACT>
 <CHANGE_SUMMARY>
   <item>RFC-1155: created specialized cancellation policy schema — ordinary/extraordinary notice periods and payment-default terms as ISO-8601 durations.</item>
+  <item>RFC-1249: wire werkstatt.commands.validate into packages.check + retire CMD-OUTPUT debt</item>
 </CHANGE_SUMMARY>
 */
 
@@ -22,8 +23,8 @@
  */
 
 import { z } from "zod";
-import { policySchema } from "./policy.js";
-import { nonEmptyString, pbpIsoDurationSchema } from "../schemas/primitives.js";
+import { policySchema } from "./policy.ts";
+import { nonEmptyString, pbpIsoDurationSchema } from "../schemas/primitives.ts";
 
 export const cancellationPolicySchema = policySchema
   .extend({

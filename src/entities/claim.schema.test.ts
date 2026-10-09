@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { claimSchema } from "./claim.js";
+import { claimSchema } from "./claim.ts";
 
 const validClaim = {
   schema: "pbp/claim@1",

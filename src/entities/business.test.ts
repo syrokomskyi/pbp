@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { BUSINESS_SCHEMA_ID } from "./business.js";
+import { BUSINESS_SCHEMA_ID } from "./business.ts";
 
 describe("BUSINESS_SCHEMA_ID", () => {
   it("equals pbp/business@1", () => {

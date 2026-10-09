@@ -4,14 +4,15 @@
 </MODULE_CONTRACT>
 <CHANGE_SUMMARY>
   <item>Established by RFC-0742 — tests for price projection builder, display config, and allowedUses enforcement.</item>
+  <item>RFC-1249: wire werkstatt.commands.validate into packages.check + retire CMD-OUTPUT debt</item>
 </CHANGE_SUMMARY>
 */
 
 import { describe, it, expect } from "vitest";
-import { buildPriceProjection, DEFAULT_DISPLAY_CONFIG } from "./price-projection.js";
-import type { PbpMaterializedDerivedPrice } from "../materialized-derived-price.js";
+import { buildPriceProjection, DEFAULT_DISPLAY_CONFIG } from "./price-projection.ts";
+import type { PbpMaterializedDerivedPrice } from "../materialized-derived-price.ts";
 import type { PbpCurrentUses } from "@warpgogol/pbp/entities/currency-pricing-policy";
-import type { PbpCurrencyConversionTrace } from "../derivations/currency-conversion.js";
+import type { PbpCurrencyConversionTrace } from "../derivations/currency-conversion.ts";
 
 function makeAllowedUses(overrides: Partial<PbpCurrentUses> = {}): PbpCurrentUses {
   return {

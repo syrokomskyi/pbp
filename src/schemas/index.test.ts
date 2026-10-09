@@ -7,11 +7,12 @@
 </MODULE_CONTRACT>
 <CHANGE_SUMMARY>
   <item>RFC-1102: rewritten — asserts infra-only export surface (AC-2).</item>
+  <item>RFC-1249: wire werkstatt.commands.validate into packages.check + retire CMD-OUTPUT debt</item>
 </CHANGE_SUMMARY>
 */
 
 import { describe, it, expect } from "vitest";
-import * as schemasBarrel from "./index.js";
+import * as schemasBarrel from "./index.ts";
 
 const EXPECTED_INFRA_EXPORTS = [
   // primitives

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { rateSnapshotSchema } from "./rate-snapshot.js";
+import { rateSnapshotSchema } from "./rate-snapshot.ts";
 
 const validRateSnapshot = {
   schema: "pbp/rate-snapshot@1",

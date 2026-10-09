@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { CATALOG_SCHEMA_ID, CATALOG_ENTRY_SCHEMA_ID } from "./catalog.js";
+import { CATALOG_SCHEMA_ID, CATALOG_ENTRY_SCHEMA_ID } from "./catalog.ts";
 
 describe("CATALOG_SCHEMA_ID", () => {
   it("equals pbp/catalog@1", () => {

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { isPbpSlaOperator, PBP_SLA_OPERATORS } from "./sla-policy.js";
+import { isPbpSlaOperator, PBP_SLA_OPERATORS } from "./sla-policy.ts";
 
 describe("isPbpSlaOperator", () => {
   it("accepts all valid operators", () => {

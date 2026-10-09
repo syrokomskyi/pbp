@@ -7,7 +7,7 @@ import {
   decimalRound,
   isPbpRoundingMode,
   PBP_ROUNDING_MODES,
-} from "./decimal.js";
+} from "./decimal.ts";
 
 describe("decimalMultiply", () => {
   it("multiplies two decimal strings", () => {

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import type { PbpAiAccessProjection } from "./ai-access.js";
+import type { PbpAiAccessProjection } from "./ai-access.ts";
 
 describe("PbpAiAccessProjection", () => {
   it("defines a valid AI access projection shape", () => {

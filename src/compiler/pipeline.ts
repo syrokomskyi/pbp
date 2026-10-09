@@ -13,30 +13,31 @@ Mechanical v1 to v2 header migration across the workspace: 942 files rewritten �
   <item>RFC-1097: sweep — werkstatt-engine clean
 
 Sweep batch 4: 73 Compass headers on headerless engine files (certification, component-runtime, isolation, evolution, testing), real KEY_DECISIONS on 75 files (kernel, cache, dht, swim, gitmesh, runtime), ~80 purpose expansions (CONTRACT-02/PURPOSE-02), non-goals on 13 CONTRACT-03 files, CS-07 history literal fix repo-wide (253 files). Policy: .template.ts/.template.astro excludedPaths. werkstatt-engine now 0 diagnostics.</item>
+  <item>RFC-1249: wire werkstatt.commands.validate into packages.check + retire CMD-OUTPUT debt</item>
 </CHANGE_SUMMARY>
 */
 
 import { createDefaultIO } from "@warpgogol/werkstatt-shared/kernel/workspace-io";
-import type { PbpCompilerInput, PbpCompilerResult, PartialCompilerResult } from "./types.js";
-import { discover } from "./discover.js";
-import { parse } from "./parse.js";
-import { validateRaw } from "./validate.js";
-import { buildEntityIndex } from "./entity-index.js";
-import { resolveLocales } from "./locale.js";
-import { resolveReferences } from "./references.js";
-import { resolveProfile } from "./profile.js";
-import { applyRuntimeOverlays } from "./overlays.js";
-import { runDerivations } from "./derivations.js";
-import { validateSemantic } from "./semantic.js";
-import { assembleBuyerView } from "./buyer-view.js";
+import type { PbpCompilerInput, PbpCompilerResult, PartialCompilerResult } from "./types.ts";
+import { discover } from "./discover.ts";
+import { parse } from "./parse.ts";
+import { validateRaw } from "./validate.ts";
+import { buildEntityIndex } from "./entity-index.ts";
+import { resolveLocales } from "./locale.ts";
+import { resolveReferences } from "./references.ts";
+import { resolveProfile } from "./profile.ts";
+import { applyRuntimeOverlays } from "./overlays.ts";
+import { runDerivations } from "./derivations.ts";
+import { validateSemantic } from "./semantic.ts";
+import { assembleBuyerView } from "./buyer-view.ts";
 import {
   generateProjections,
   buildCanonicalPriceSet,
   buildCanonicalCurrencySet,
   validateSchemaOrgPrices,
-} from "./projection.js";
-import { snapshot } from "./snapshot.js";
-import { publish } from "./publication.js";
+} from "./projection.ts";
+import { snapshot } from "./snapshot.ts";
+import { publish } from "./publication.ts";
 
 export async function compilePbpProfile(input: PbpCompilerInput): Promise<PbpCompilerResult> {
   // Single io instance resolved at the entry point — one adapter across all phases.

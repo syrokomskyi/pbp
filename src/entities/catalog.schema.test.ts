@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { catalogSchema, catalogEntrySchema } from "./catalog.js";
+import { catalogSchema, catalogEntrySchema } from "./catalog.ts";
 
 const validCatalog = {
   schema: "pbp/catalog@1",

@@ -4,7 +4,7 @@ import {
   getRateSourceAdapter,
   clearRateSourceAdapters,
 } from "./registry.ts";
-import type { RateSourceAdapter } from "./types.js";
+import type { RateSourceAdapter } from "./types.ts";
 
 describe("rate source adapter registry", () => {
   it("returns undefined for unregistered adapter", () => {

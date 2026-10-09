@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { validateRaw } from "./validate.js";
-import type { ParsedEntity } from "./parse.js";
+import { validateRaw } from "./validate.ts";
+import type { ParsedEntity } from "./parse.ts";
 
 function makeParsed(
   entityId: string,

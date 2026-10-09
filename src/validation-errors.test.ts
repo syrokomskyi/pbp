@@ -4,7 +4,7 @@ import {
   isPbpErrorPrefix,
   PBP_VALIDATION_SEVERITIES,
   PBP_ERROR_PREFIXES,
-} from "./validation-errors.js";
+} from "./validation-errors.ts";
 
 describe("isPbpValidationSeverity", () => {
   it("accepts all valid severities", () => {

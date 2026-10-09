@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import type { PbpPimAdapterProfile, PbpShopifyAdapterProfile } from "./pim-adapter.js";
+import type { PbpPimAdapterProfile, PbpShopifyAdapterProfile } from "./pim-adapter.ts";
 
 describe("PbpPimAdapterProfile", () => {
   it("defines a valid PIM adapter profile", () => {

@@ -8,6 +8,7 @@
 </MODULE_CONTRACT>
 <CHANGE_SUMMARY>
   <item>RFC-1155: created specialized partner-program policy schema — trusted-partner caps, referral reward/qualification/attribution periods and referred-customer benefit.</item>
+  <item>RFC-1249: wire werkstatt.commands.validate into packages.check + retire CMD-OUTPUT debt</item>
 </CHANGE_SUMMARY>
 */
 
@@ -23,8 +24,8 @@
  */
 
 import { z } from "zod";
-import { policySchema } from "./policy.js";
-import { nonEmptyString, pbpIsoDurationSchema } from "../schemas/primitives.js";
+import { policySchema } from "./policy.ts";
+import { nonEmptyString, pbpIsoDurationSchema } from "../schemas/primitives.ts";
 
 export const partnerProgramPolicySchema = policySchema
   .extend({

@@ -8,6 +8,7 @@
 </MODULE_CONTRACT>
 <CHANGE_SUMMARY>
   <item>RFC-1155: created specialized price-changes policy schema — price-fix period, announcement notice and exit right.</item>
+  <item>RFC-1249: wire werkstatt.commands.validate into packages.check + retire CMD-OUTPUT debt</item>
 </CHANGE_SUMMARY>
 */
 
@@ -22,8 +23,8 @@
  */
 
 import { z } from "zod";
-import { policySchema } from "./policy.js";
-import { pbpIsoDurationSchema } from "../schemas/primitives.js";
+import { policySchema } from "./policy.ts";
+import { pbpIsoDurationSchema } from "../schemas/primitives.ts";
 
 export const priceChangesPolicySchema = policySchema
   .extend({

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { publicDocumentSchema } from "./public-document.js";
+import { publicDocumentSchema } from "./public-document.ts";
 
 const validPublicDocument = {
   schema: "pbp/public-document@1",

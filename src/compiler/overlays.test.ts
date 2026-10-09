@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { applyRuntimeOverlays } from "./overlays.js";
-import type { PbpResolvedGraph } from "./types.js";
+import { applyRuntimeOverlays } from "./overlays.ts";
+import type { PbpResolvedGraph } from "./types.ts";
 
 describe("applyRuntimeOverlays", () => {
   it("returns the graph unchanged (stub for Wave 1)", async () => {

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { isPlainObject, deepMerge } from "./deep-merge.js";
+import { isPlainObject, deepMerge } from "./deep-merge.ts";
 
 describe("isPlainObject", () => {
   it("returns true for plain objects", () => {

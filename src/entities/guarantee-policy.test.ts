@@ -4,7 +4,7 @@ import {
   isPbpGuaranteeRemedyType,
   PBP_GUARANTEE_OPERATORS,
   PBP_GUARANTEE_REMEDY_TYPES,
-} from "./guarantee-policy.js";
+} from "./guarantee-policy.ts";
 
 describe("isPbpGuaranteeOperator", () => {
   it("accepts all valid operators", () => {

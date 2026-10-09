@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { PBP_NAMESPACE, PBP_MAJOR_VERSION, pbpSchemaId, validateSchemaId } from "./schema-id.js";
+import { PBP_NAMESPACE, PBP_MAJOR_VERSION, pbpSchemaId, validateSchemaId } from "./schema-id.ts";
 
 describe("pbpSchemaId", () => {
   it("constructs schema ID from entity name", () => {

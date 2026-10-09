@@ -7,7 +7,7 @@ import {
   pbpLocalizedStringSchema,
   pbpQuantitativeValueSchema,
   pbpExternalIdentifierSchema,
-} from "./primitives.js";
+} from "./primitives.ts";
 
 describe("nonEmptyString", () => {
   it("accepts non-empty string", () => {

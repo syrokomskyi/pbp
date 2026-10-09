@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { pbpCurrencyPricingPolicySchema } from "./currency-pricing-policy.js";
+import { pbpCurrencyPricingPolicySchema } from "./currency-pricing-policy.ts";
 
 const validCurrencyPricingPolicy = {
   schema: "pbp/currency-pricing-policy@1",

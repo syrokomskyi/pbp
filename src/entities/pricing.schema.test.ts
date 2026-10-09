@@ -4,7 +4,7 @@ import {
   pbpExternalCostSchema,
   pbpPlanSchema,
   pbpAdjustmentSchema,
-} from "./pricing.js";
+} from "./pricing.ts";
 
 describe("pbpChargeSchema", () => {
   it("parses a fixed charge", () => {

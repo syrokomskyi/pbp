@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { renewalPolicySchema } from "./renewal-policy.js";
+import { renewalPolicySchema } from "./renewal-policy.ts";
 
 const validRenewalPolicy = {
   schema: "pbp/renewal-policy@1",
