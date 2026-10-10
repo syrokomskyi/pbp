@@ -8,6 +8,7 @@
 <CHANGE_SUMMARY>
   <item>RFC-1102: created — type-identity assertions for all 30 paired entities (AC-3).</item>
   <item>RFC-1249: wire werkstatt.commands.validate into packages.check + retire CMD-OUTPUT debt</item>
+  <item>RFC-1254: drain latent lint debt — dead imports/vars, no-as-any casts, restricted imports</item>
 </CHANGE_SUMMARY>
 */
 
@@ -16,58 +17,88 @@ import type { z } from "zod";
 
 import { pbpSchemaById } from "./index.ts";
 
-import { brandSchema, type PbpBrand } from "./brand.ts";
-import { businessSchema, type PbpBusiness } from "./business.ts";
-import {
+import type { brandSchema} from "./brand.ts";
+import { type PbpBrand } from "./brand.ts";
+import type { businessSchema} from "./business.ts";
+import { type PbpBusiness } from "./business.ts";
+import type {
   catalogSchema,
-  catalogEntrySchema,
+  catalogEntrySchema} from "./catalog.ts";
+import {
   type PbpCatalog,
   type PbpCatalogEntry,
 } from "./catalog.ts";
-import { categorySchema, type PbpCategory } from "./category.ts";
-import { claimSchema, type PbpClaim } from "./claim.ts";
-import { clientTestimonialSchema, type PbpClientTestimonial } from "./client-testimonial.ts";
-import { consentSchema, type PbpConsent } from "./consent.ts";
-import { contactPointSchema, type PbpContactPoint } from "./contact-point.ts";
+import type { categorySchema} from "./category.ts";
+import { type PbpCategory } from "./category.ts";
+import type { claimSchema} from "./claim.ts";
+import { type PbpClaim } from "./claim.ts";
+import type { clientTestimonialSchema} from "./client-testimonial.ts";
+import { type PbpClientTestimonial } from "./client-testimonial.ts";
+import type { consentSchema} from "./consent.ts";
+import { type PbpConsent } from "./consent.ts";
+import type { contactPointSchema} from "./contact-point.ts";
+import { type PbpContactPoint } from "./contact-point.ts";
+import type {
+  pbpCurrencyPricingPolicySchema} from "./currency-pricing-policy.ts";
 import {
-  pbpCurrencyPricingPolicySchema,
   type PbpCurrencyPricingPolicy,
 } from "./currency-pricing-policy.ts";
-import { dataRetentionPolicySchema, type PbpDataRetentionPolicy } from "./data-retention-policy.ts";
-import { disclosureSchema, type PbpDisclosure } from "./disclosure.ts";
-import { evidenceSourceSchema, type PbpEvidenceSource } from "./evidence-source.ts";
-import { exitPolicySchema, type PbpExitPolicy } from "./exit-policy.ts";
-import { guaranteePolicySchema, type PbpGuaranteePolicy } from "./guarantee-policy.ts";
-import { legalIdentitySchema, type PbpLegalIdentity } from "./legal-identity.ts";
-import { offeringSchema, type PbpOffering } from "./offering.ts";
-import { ownershipPolicySchema, type PbpOwnershipPolicy } from "./ownership-policy.ts";
-import { placeSchema, type PbpPlace } from "./place.ts";
-import { policySchema, type PbpPolicy } from "./policy.ts";
-import {
+import type { dataRetentionPolicySchema} from "./data-retention-policy.ts";
+import { type PbpDataRetentionPolicy } from "./data-retention-policy.ts";
+import type { disclosureSchema} from "./disclosure.ts";
+import { type PbpDisclosure } from "./disclosure.ts";
+import type { evidenceSourceSchema} from "./evidence-source.ts";
+import { type PbpEvidenceSource } from "./evidence-source.ts";
+import type { exitPolicySchema} from "./exit-policy.ts";
+import { type PbpExitPolicy } from "./exit-policy.ts";
+import type { guaranteePolicySchema} from "./guarantee-policy.ts";
+import { type PbpGuaranteePolicy } from "./guarantee-policy.ts";
+import type { legalIdentitySchema} from "./legal-identity.ts";
+import { type PbpLegalIdentity } from "./legal-identity.ts";
+import type { offeringSchema} from "./offering.ts";
+import { type PbpOffering } from "./offering.ts";
+import type { ownershipPolicySchema} from "./ownership-policy.ts";
+import { type PbpOwnershipPolicy } from "./ownership-policy.ts";
+import type { placeSchema} from "./place.ts";
+import { type PbpPlace } from "./place.ts";
+import type { policySchema} from "./policy.ts";
+import { type PbpPolicy } from "./policy.ts";
+import type {
   pbpChargeSchema,
   pbpPlanSchema,
   pbpAdjustmentSchema,
-  pbpExternalCostSchema,
+  pbpExternalCostSchema} from "./pricing.ts";
+import {
   type PbpCharge,
   type PbpPlan,
   type PbpAdjustment,
   type PbpExternalCost,
 } from "./pricing.ts";
-import { productSchema, type PbpProduct } from "./product.ts";
-import { productGroupSchema, type PbpProductGroup } from "./product-group.ts";
-import { productVariantSchema, type PbpProductVariant } from "./product-variant.ts";
-import { publicDocumentSchema, type PbpPublicDocument } from "./public-document.ts";
-import {
+import type { productSchema} from "./product.ts";
+import { type PbpProduct } from "./product.ts";
+import type { productGroupSchema} from "./product-group.ts";
+import { type PbpProductGroup } from "./product-group.ts";
+import type { productVariantSchema} from "./product-variant.ts";
+import { type PbpProductVariant } from "./product-variant.ts";
+import type { publicDocumentSchema} from "./public-document.ts";
+import { type PbpPublicDocument } from "./public-document.ts";
+import type {
   pbpRatePolicySchema,
-  pbpRateScheduleSchema,
+  pbpRateScheduleSchema} from "./rate-policy.ts";
+import {
   type PbpRatePolicy,
   type PbpRateSchedule,
 } from "./rate-policy.ts";
-import { rateSnapshotSchema, type PbpRateSnapshot } from "./rate-snapshot.ts";
-import { pbpRateSourceSchema, type PbpRateSource } from "./rate-source.ts";
-import { slaPolicySchema, type PbpServiceLevelPolicy } from "./sla-policy.ts";
-import { pbpTermsSchema, type PbpTerms } from "./terms.ts";
-import { webPresenceSchema, type PbpWebPresence } from "./web-presence.ts";
+import type { rateSnapshotSchema} from "./rate-snapshot.ts";
+import { type PbpRateSnapshot } from "./rate-snapshot.ts";
+import type { pbpRateSourceSchema} from "./rate-source.ts";
+import { type PbpRateSource } from "./rate-source.ts";
+import type { slaPolicySchema} from "./sla-policy.ts";
+import { type PbpServiceLevelPolicy } from "./sla-policy.ts";
+import type { pbpTermsSchema} from "./terms.ts";
+import { type PbpTerms } from "./terms.ts";
+import type { webPresenceSchema} from "./web-presence.ts";
+import { type PbpWebPresence } from "./web-presence.ts";
 
 describe("entity-schema conformance (RFC-1102, DNA-103)", () => {
   it("pbpSchemaById enumerates exactly the 36 registered schema IDs", () => {

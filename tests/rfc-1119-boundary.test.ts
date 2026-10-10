@@ -76,6 +76,7 @@ describe("RFC-1119 boundary", () => {
       "env.d.ts",
       "load-target-currencies.test.ts",
       "loaders.ts",
+      "semantic-model.test.ts",
       "semantic-model.ts",
     ]);
   });

@@ -1,11 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
-  validateDecimal,
-  validateMoneyRange,
-  containsHtml,
-  isEmptyValue,
-  DECIMAL_RE,
-} from "./validation.ts";
+import { validateDecimal, validateMoneyRange, containsHtml, isEmptyValue } from "./validation.ts";
 
 describe("validateDecimal", () => {
   it("accepts integer string", () => {

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { PBP_IDENTITY_RELATIONS, type PbpIdentityRelation } from "./entity-ref.ts";
+import { PBP_IDENTITY_RELATIONS } from "./entity-ref.ts";
 
 describe("PBP_IDENTITY_RELATIONS", () => {
   it("contains all expected identity relations", () => {

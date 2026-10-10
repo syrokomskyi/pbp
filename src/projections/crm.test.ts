@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import type { PbpCrmProjection, PbpCrmPayload } from "./crm.ts";
+import type { PbpCrmProjection } from "./crm.ts";
 
 describe("PbpCrmProjection", () => {
   it("defines a valid CRM projection shape", () => {
