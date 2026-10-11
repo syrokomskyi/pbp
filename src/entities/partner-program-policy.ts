@@ -9,6 +9,7 @@
 <CHANGE_SUMMARY>
   <item>RFC-1155: created specialized partner-program policy schema — trusted-partner caps, referral reward/qualification/attribution periods and referred-customer benefit.</item>
   <item>RFC-1249: wire werkstatt.commands.validate into packages.check + retire CMD-OUTPUT debt</item>
+  <item>RFC-1258: optional dated `capacity` block (month/free/total/updatedAt) — the wave-capacity fact the referral landing renders; staleness validated site-side, schema stays time-free.</item>
 </CHANGE_SUMMARY>
 */
 
@@ -54,6 +55,19 @@ export const partnerProgramPolicySchema = policySchema
       .object({
         freePeriod: pbpIsoDurationSchema.optional(),
         priorityStart: z.boolean().optional(),
+      })
+      .optional(),
+    /** RFC-1258: dated wave-capacity fact — the current enrollment wave the
+        referral landing's "Nächste Welle: n von m Plätzen frei" line speaks
+        about. Operator-maintained; staleness/freshness is validated by
+        `referral.partners.validate` (site-side), never here — this schema
+        stays time-free (DNA-105). */
+    capacity: z
+      .object({
+        month: z.string().regex(/^\d{4}-\d{2}$/),
+        free: z.number().int().min(0),
+        total: z.number().int().positive(),
+        updatedAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
       })
       .optional(),
   })

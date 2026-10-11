@@ -58,4 +58,44 @@ describe("partnerProgramPolicySchema (RFC-1155)", () => {
     });
     expect(result.success).toBe(false);
   });
+
+  it("parses a valid capacity block (RFC-1258)", () => {
+    const result = partnerProgramPolicySchema.safeParse({
+      ...validPartnerProgramPolicy,
+      capacity: { month: "2026-11", free: 2, total: 4, updatedAt: "2026-10-11" },
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it("rejects capacity with bad month format", () => {
+    const result = partnerProgramPolicySchema.safeParse({
+      ...validPartnerProgramPolicy,
+      capacity: { month: "2026-11-01", free: 2, total: 4, updatedAt: "2026-10-11" },
+    });
+    expect(result.success).toBe(false);
+  });
+
+  it("rejects capacity with negative free", () => {
+    const result = partnerProgramPolicySchema.safeParse({
+      ...validPartnerProgramPolicy,
+      capacity: { month: "2026-11", free: -1, total: 4, updatedAt: "2026-10-11" },
+    });
+    expect(result.success).toBe(false);
+  });
+
+  it("rejects capacity with non-positive total", () => {
+    const result = partnerProgramPolicySchema.safeParse({
+      ...validPartnerProgramPolicy,
+      capacity: { month: "2026-11", free: 2, total: 0, updatedAt: "2026-10-11" },
+    });
+    expect(result.success).toBe(false);
+  });
+
+  it("rejects capacity with bad updatedAt format", () => {
+    const result = partnerProgramPolicySchema.safeParse({
+      ...validPartnerProgramPolicy,
+      capacity: { month: "2026-11", free: 2, total: 4, updatedAt: "10/2026" },
+    });
+    expect(result.success).toBe(false);
+  });
 });
