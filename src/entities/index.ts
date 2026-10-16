@@ -9,6 +9,20 @@
 <CHANGE_SUMMARY>
   <item>RFC-1102: created barrel — re-exports all 37 entity modules; relocated pbpSchemaById and pbpEntityDiscriminatedUnion from schemas/index.ts (DNA-103).</item>
   <item>RFC-1249: wire werkstatt.commands.validate into packages.check + retire CMD-OUTPUT debt</item>
+  <item>RFC-1293: require timing semantics on time-bound policy fields via contractTerms.gate (RFC-1293)
+
+policySchema gains an optional timing map (pbpTimingSchema: startEvent, clock,
+timezone, businessHours, boundary) inherited by every specialized policy.
+pbp.content.validate sweeps each pbp/* entity's frontmatter — TIMED_FIELDS
+registry paths plus every ISO-8601 duration literal — and emits
+PBP-TIMING-01..04 at contractTerms.gate severity (warn|enforce in system.md;
+absent = warn). enforce also makes pbp.terms-reference.validate behave as
+--strict. New sites register with contractTerms.gate: enforce
+(sternsystem-register stub + both onboarding system templates). Live warpgogol
+run: 129 PBP-TIMING-01 warnings across policies/offerings/documents/claims —
+the owner's contract-decision agenda; no timing values authored, no site gate
+flipped. Known registry gap: renewal.renewalPeriod/reminder are not ISO-shaped
+and escape the sweep (documented in the RFC evidence). Canary C10 active.</item>
 </CHANGE_SUMMARY>
 */
 
@@ -37,6 +51,7 @@ export * from "./ownership-policy.ts";
 export * from "./partner-program-policy.ts";
 export * from "./place.ts";
 export * from "./policy.ts";
+export * from "./policy-timing.ts";
 export * from "./portability-policy.ts";
 export * from "./price-changes-policy.ts";
 export * from "./pricing.ts";

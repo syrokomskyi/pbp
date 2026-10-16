@@ -11,6 +11,20 @@
 
 Sweep batch 5: 90 Compass headers on headerless site files (PBP entities/projections/schemas, .d.ts, .css, barrels), 211 non-goals (CONTRACT-03, mostly re-export shims), ~265 purpose expansions (CONTRACT-02/PURPOSE-02), 2 CHANGE_SUMMARY additions, boilerplate purpose rewrite. Policy: domain/ui/icons/gen excludedPath (2326 generated-icon diags), .template.css excludedPath, .e2e.config.ts testPattern. compass.validate --mode error now returns 0 diagnostics across the whole workspace.</item>
   <item>RFC-1249: wire werkstatt.commands.validate into packages.check + retire CMD-OUTPUT debt</item>
+  <item>RFC-1293: require timing semantics on time-bound policy fields via contractTerms.gate (RFC-1293)
+
+policySchema gains an optional timing map (pbpTimingSchema: startEvent, clock,
+timezone, businessHours, boundary) inherited by every specialized policy.
+pbp.content.validate sweeps each pbp/* entity's frontmatter — TIMED_FIELDS
+registry paths plus every ISO-8601 duration literal — and emits
+PBP-TIMING-01..04 at contractTerms.gate severity (warn|enforce in system.md;
+absent = warn). enforce also makes pbp.terms-reference.validate behave as
+--strict. New sites register with contractTerms.gate: enforce
+(sternsystem-register stub + both onboarding system templates). Live warpgogol
+run: 129 PBP-TIMING-01 warnings across policies/offerings/documents/claims —
+the owner's contract-decision agenda; no timing values authored, no site gate
+flipped. Known registry gap: renewal.renewalPeriod/reminder are not ISO-shaped
+and escape the sweep (documented in the RFC evidence). Canary C10 active.</item>
 </CHANGE_SUMMARY>
 */
 
@@ -26,6 +40,7 @@ import { pbpEntitySchema } from "../schemas/envelope.ts";
 import { pbpEntityRefSchema } from "../schemas/entity-ref.ts";
 import { nonEmptyString } from "../schemas/primitives.ts";
 import { pbpSchemaId } from "../schema-id.ts";
+import { pbpTimingSchema } from "./policy-timing.ts";
 
 export const POLICY_SCHEMA_ID = pbpSchemaId("policy");
 
@@ -54,6 +69,13 @@ export const policySchema = pbpEntitySchema
       })
       .optional(),
     terms: z.record(z.string(), z.unknown()).optional(),
+    /**
+     * RFC-1293: per-field timing semantics for time-bound fields. Keys are dot
+     * paths inside this entity's frontmatter (e.g. "objective.threshold"); the
+     * value declares when the period starts, how it is counted, and in which
+     * timezone. Optional — sites enforce completeness via contractTerms.gate.
+     */
+    timing: z.record(z.string(), pbpTimingSchema).optional(),
   })
   .strict();
 
