@@ -1,6 +1,11 @@
 /*
 <MODULE_CONTRACT>
-<purpose>Unit tests for materializeDerivedPrices (RFC-0740).</purpose>
+<purpose>
+Unit tests for materialize derived prices covering materializeDerivedPrices. It also guards the documented public contract and regression-sensitive edge cases.
+</purpose>
+<non-goals>
+  <item>Not a contract source of truth — the module under test owns the authoritative behavior; fixtures are minimal scaffolding only.</item>
+</non-goals>
 </MODULE_CONTRACT>
 <CHANGE_SUMMARY>
   <item>Established by RFC-0740 — tests for materialization logic and validation rules.</item>

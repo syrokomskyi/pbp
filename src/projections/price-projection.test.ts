@@ -1,6 +1,11 @@
 /*
 <MODULE_CONTRACT>
-<purpose>Unit tests for buildPriceProjection (RFC-0742).</purpose>
+<purpose>
+Unit tests for price projection covering buildPriceProjection. It also guards the documented public contract and regression-sensitive edge cases.
+</purpose>
+<non-goals>
+  <item>Not a contract source of truth — the module under test owns the authoritative behavior; fixtures are minimal scaffolding only.</item>
+</non-goals>
 </MODULE_CONTRACT>
 <CHANGE_SUMMARY>
   <item>Established by RFC-0742 — tests for price projection builder, display config, and allowedUses enforcement.</item>

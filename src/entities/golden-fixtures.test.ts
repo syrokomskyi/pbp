@@ -1,6 +1,9 @@
 /*
 <MODULE_CONTRACT>
 <purpose>Golden fixture tests for PBP entity Zod schemas — positive and negative cases (RFC-0466).</purpose>
+<non-goals>
+  <item>Not a contract source of truth — the module under test owns the authoritative behavior; fixtures are minimal scaffolding only.</item>
+</non-goals>
 </MODULE_CONTRACT>
 <CHANGE_SUMMARY>
   <item>Established by RFC-0466 — golden fixture tests for all entity schemas.</item>

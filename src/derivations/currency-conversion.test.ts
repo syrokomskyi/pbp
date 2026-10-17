@@ -1,6 +1,9 @@
 /*
 <MODULE_CONTRACT>
 <purpose>Golden test vectors and failure mode tests for currency conversion derivation (RFC-0739).</purpose>
+<non-goals>
+  <item>Not a contract source of truth — the module under test owns the authoritative behavior; fixtures are minimal scaffolding only.</item>
+</non-goals>
 </MODULE_CONTRACT>
 <CHANGE_SUMMARY>
   <item>Established by RFC-0739 — 14 test vectors: 5 golden + 3 failure modes + 1 JPY + 5 rounding modes.</item>

@@ -1,6 +1,11 @@
 /*
 <MODULE_CONTRACT>
-<purpose>Golden fixture tests for the PBP compiler pipeline (RFC-0467).</purpose>
+<purpose>
+Unit tests for compiler pipeline covering PBP Compiler Pipeline. It also guards the documented public contract and regression-sensitive edge cases.
+</purpose>
+<non-goals>
+  <item>Not a contract source of truth — the module under test owns the authoritative behavior; fixtures are minimal scaffolding only.</item>
+</non-goals>
 </MODULE_CONTRACT>
 <CHANGE_SUMMARY>
   <item>Established by RFC-0467 — compiler pipeline golden fixture tests.</item>
