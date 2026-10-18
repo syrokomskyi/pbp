@@ -1,0 +1,3 @@
+# Floors track the published versions the standalone package must work against.
+overrides:
+  "@warpgogol/werkstatt-shared": ^1.0.0

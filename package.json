@@ -465,7 +465,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@warpgogol/werkstatt-shared": "workspace:*",
+    "@warpgogol/werkstatt-shared": "^1.0.0",
     "big.js": "^7.0.1",
     "zod": "^4.6.5"
   },
@@ -480,5 +480,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "files": ["src", "tsconfig.json"]
+  "files": [
+    "src",
+    "tsconfig.json"
+  ],
+  "packageManager": "pnpm@11.10.0"
 }
