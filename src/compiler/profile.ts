@@ -6,6 +6,7 @@
 </non-goals>
 </MODULE_CONTRACT>
 <CHANGE_SUMMARY>
+  <item>RFC-1328/AMD-005: isPublicPbpEntity gate at profile resolution — the resolved graph is the projection boundary; non-public entities stay in the entity index only.</item>
   <item>RFC-1097: step 6 — compass.migrate codemod run
 
 Mechanical v1 to v2 header migration across the workspace: 942 files rewritten — CHANGE_SUMMARY windows collapsed into history, forbidden v1 blocks stripped, KEY_DECISIONS seeded from @ai-invariant comments (5 files) or TODO placeholders (103 files), blocks reordered to canonical order.</item>
@@ -34,6 +35,7 @@ import type { PbpPublicDocument } from "../entities/public-document.ts";
 import type { PbpCategory } from "../entities/category.ts";
 import type { PbpRatePolicy } from "../entities/rate-policy.ts";
 import type { PbpRateSnapshot } from "../entities/rate-snapshot.ts";
+import { isPublicPbpEntity } from "../publication.ts";
 import type { PbpResolvedGraph } from "./types.ts";
 
 export async function resolveProfile(index: Map<string, PbpEntity>): Promise<PbpResolvedGraph> {
@@ -42,6 +44,11 @@ export async function resolveProfile(index: Map<string, PbpEntity>): Promise<Pbp
 
   for (const id of sortedIds) {
     const entity = index.get(id)!;
+    // RFC-1328 (AMD-005): the resolved graph is the projection boundary — only
+    // public entities (status published, visibility not private) enter it. The
+    // entity index still carries drafts for reference resolution and
+    // validation; refs to non-public entities resolve to absent downstream.
+    if (!isPublicPbpEntity(entity)) continue;
     const list = byType.get(entity.type) ?? [];
     list.push(entity);
     byType.set(entity.type, list);

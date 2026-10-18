@@ -10,6 +10,12 @@
 
 Sweep batch 5: 90 Compass headers on headerless site files (PBP entities/projections/schemas, .d.ts, .css, barrels), 211 non-goals (CONTRACT-03, mostly re-export shims), ~265 purpose expansions (CONTRACT-02/PURPOSE-02), 2 CHANGE_SUMMARY additions, boilerplate purpose rewrite. Policy: domain/ui/icons/gen excludedPath (2326 generated-icon diags), .template.css excludedPath, .e2e.config.ts testPattern. compass.validate --mode error now returns 0 diagnostics across the whole workspace.</item>
   <item>RFC-1249: wire werkstatt.commands.validate into packages.check + retire CMD-OUTPUT debt</item>
+  <item>RFC-1328: harden intake contract — publication safety + locale-native facts
+
+AMD-005: isPublicPbpEntity gates every projection channel (compiler resolveProfile,
+semantic-loader, Astro loaders); INTAKE-12..15 blocking rules (internal markers,
+statementByLocale coverage, WebP rasters, closed palette); Unicode tokenizer +
+evidence-id strip in family.detect; per-locale seed documents; w2 producer handoff.</item>
 </CHANGE_SUMMARY>
 */
 
@@ -396,6 +402,7 @@ export {
   type PbpPublicationSnapshot,
   PBP_CANONICAL_SERIALIZATION_STEPS,
   isPbpCanonicalSerializationStep,
+  isPublicPbpEntity,
 } from "./publication.ts";
 
 // RFC-0436: Offering Relations — no new types (already in RFC-0429)

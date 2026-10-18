@@ -1,11 +1,12 @@
 /*
 <MODULE_CONTRACT>
-<purpose>publication — PBP git revision types for entity publication tracking.</purpose>
+<purpose>publication — PBP git revision types for entity publication tracking and the isPublicPbpEntity projection gate (RFC-1328).</purpose>
 <non-goals>
   <item>Do not publish — this module defines the revision contract.</item>
 </non-goals>
 </MODULE_CONTRACT>
 <CHANGE_SUMMARY>
+  <item>RFC-1328: isPublicPbpEntity — the single publication gate all public projections consume (published + visibility != private).</item>
   <item>RFC-1097: sweep — werkstatt-site clean, zero diagnostics workspace-wide
 
 Sweep batch 5: 90 Compass headers on headerless site files (PBP entities/projections/schemas, .d.ts, .css, barrels), 211 non-goals (CONTRACT-03, mostly re-export shims), ~265 purpose expansions (CONTRACT-02/PURPOSE-02), 2 CHANGE_SUMMARY additions, boilerplate purpose rewrite. Policy: domain/ui/icons/gen excludedPath (2326 generated-icon diags), .template.css excludedPath, .e2e.config.ts testPattern. compass.validate --mode error now returns 0 diagnostics across the whole workspace.</item>
@@ -88,4 +89,19 @@ export interface PbpJcsCanonicalization {
   rfc: "RFC 8785";
   excludeUndefined: true;
   preserveDecimalStrings: true;
+}
+
+/**
+ * RFC-1328 (AMD-005): the single publication gate for every public
+ * projection — agent API emitters, llms.txt, JSON-LD, NLWeb indexing.
+ * An entity is public only when `status === "published"` and its optional
+ * `publication.visibility` is not `"private"` (absent means public —
+ * `visibility` exists only on schemas that declare it, e.g. evidence-source;
+ * `draft`/`suspended`/`retired`/`superseded` entities never project).
+ */
+export function isPublicPbpEntity(entity: {
+  status: string;
+  publication?: { visibility?: string };
+}): boolean {
+  return entity.status === "published" && entity.publication?.visibility !== "private";
 }
