@@ -8,8 +8,6 @@
 </non-goals>
 </MODULE_CONTRACT>
 <CHANGE_SUMMARY>
-  <item>RFC-1328 review (F-3/F-8): defaultLocale param replaces the hardcoded de; currency-pricing-policy scan gated by isPublicPbpEntity.</item>
-  <item>RFC-0743: added loadTargetCurrencies — extracts target currencies from CurrencyPricingPolicy, compiler errors propagate (review fix E-1).</item>
   <item>RFC-1075: populate canonicalUri on SemanticOffer from offering entity ID.</item>
   <item>RFC-1097: step 6 — compass.migrate codemod run
 
@@ -18,6 +16,8 @@ Mechanical v1 to v2 header migration across the workspace: 942 files rewritten �
 
 Sweep batch 4: 73 Compass headers on headerless engine files (certification, component-runtime, isolation, evolution, testing), real KEY_DECISIONS on 75 files (kernel, cache, dht, swim, gitmesh, runtime), ~80 purpose expansions (CONTRACT-02/PURPOSE-02), non-goals on 13 CONTRACT-03 files, CS-07 history literal fix repo-wide (253 files). Policy: .template.ts/.template.astro excludedPaths. werkstatt-engine now 0 diagnostics.</item>
   <item>RFC-1249: wire werkstatt.commands.validate into packages.check + retire CMD-OUTPUT debt</item>
+  <item>RFC-1324: project service-kind PBP products into organization.services (Service JSON-LD satisfiable on PBP-native sites); compose seam gains src-root files for the image-delivery escape hatch</item>
+  <history>RFC-0743, RFC-1328</history>
 </CHANGE_SUMMARY>
 */
 
@@ -126,6 +126,20 @@ export function projectToSemanticSiteProfile(
 
   const sameAs = [...businessSameAs, ...webPresenceSameAs];
 
+  // RFC-1324: PBP products of kind service/composite-service project into
+  // SemanticService[] — the only render-path source of organization.services
+  // (the legacy business/{lang}/services/ collection feeds only the fs
+  // semantic-loader). Without this, site-family baselines requiring schema.org
+  // Service JSON-LD are unsatisfiable on a PBP-native site.
+  const services = Object.values(graph.products)
+    .map((p) => p as unknown as Record<string, unknown>)
+    .filter((p) => p.kind === "service" || p.kind === "composite-service")
+    .map((p) => ({
+      id: p.id as string,
+      name: p.name as string,
+      ...(typeof p.summary === "string" && p.summary ? { description: p.summary } : {}),
+    }));
+
   const offerings = Object.values(graph.offerings).sort((a, b) => {
     const aPricing = (a as unknown as Record<string, unknown>).pricing as
       Record<string, unknown> | undefined;
@@ -212,6 +226,7 @@ export function projectToSemanticSiteProfile(
       : {}),
     email,
     contactType,
+    ...(services.length ? { services } : {}),
     ...(offer ? { offer: offer as unknown as SemanticSiteProfile["organization"]["offer"] } : {}),
     schemaType: ["Organization", "ProfessionalService"],
     ...(sameAs.length ? { sameAs } : {}),
