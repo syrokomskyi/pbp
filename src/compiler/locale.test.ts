@@ -9,6 +9,15 @@ Unit tests for locale covering resolveLocales. It also guards the documented pub
 </MODULE_CONTRACT>
 <CHANGE_SUMMARY>
   <item>RFC-1311: Compass header sweep — declares the locale suite's contract for test-file scaffold coverage.</item>
+  <item>RFC-1328: review fix pass: envelope fields in vendored schema defs, locale merge prose guard, manifest defaultLocale threading
+
+F-1 blocking: inject statementByLocale/localeNeutral into every exported pbp
+def so producers can self-validate AMD-005 bundles. F-2/F-3: LOCALE_SCOPED_FIELDS
+never merge onto existing locale docs; defaultLocale param replaces the
+hardcoded de across semantic profile, currency, referral capacity. F-4..F-10:
+statementLang rewrite, prose drops on clones/variants, INTAKE-12 name+literals,
+currency-policy gate, predicate signature, doc drift. Unblocks dna-trace
+WS-WRITE-02 false positive (_io naming).</item>
 </CHANGE_SUMMARY>
 */
 
@@ -58,7 +67,11 @@ describe("resolveLocales", () => {
 
   it("deep-merges non-default locale overlay onto default locale entity", async () => {
     const index = buildIndex([
-      makeEntity("biz-1", "de", { name: "German name", summary: "DE summary" }),
+      makeEntity("biz-1", "de", {
+        name: "German name",
+        summary: "DE summary",
+        legalName: "DE GmbH",
+      }),
       makeEntity("biz-1", "uk", { name: "UK name" }),
     ]);
 
@@ -66,7 +79,11 @@ describe("resolveLocales", () => {
 
     const entity = resolved.get("biz-1");
     expect(entity?.name).toBe("UK name");
-    expect(entity?.summary).toBe("DE summary");
+    // RFC-1328 (AMD-005): prose fields never cross locales — the uk doc
+    // deliberately omits summary, so the de text must not be restored.
+    expect(entity?.summary).toBeUndefined();
+    // Structural/identity fields still merge.
+    expect(entity?.legalName).toBe("DE GmbH");
     expect(fallbackReport.locale).toBe("uk");
     expect(fallbackReport.fallbacks.length).toBeGreaterThan(0);
     expect(fallbackReport.fallbacks[0]?.sourceLocale).toBe("de");

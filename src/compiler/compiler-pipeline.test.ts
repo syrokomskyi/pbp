@@ -10,6 +10,15 @@ Unit tests for compiler pipeline covering PBP Compiler Pipeline. It also guards 
 <CHANGE_SUMMARY>
   <item>Established by RFC-0467 — compiler pipeline golden fixture tests.</item>
   <item>RFC-1249: wire werkstatt.commands.validate into packages.check + retire CMD-OUTPUT debt</item>
+  <item>RFC-1328: review fix pass: envelope fields in vendored schema defs, locale merge prose guard, manifest defaultLocale threading
+
+F-1 blocking: inject statementByLocale/localeNeutral into every exported pbp
+def so producers can self-validate AMD-005 bundles. F-2/F-3: LOCALE_SCOPED_FIELDS
+never merge onto existing locale docs; defaultLocale param replaces the
+hardcoded de across semantic profile, currency, referral capacity. F-4..F-10:
+statementLang rewrite, prose drops on clones/variants, INTAKE-12 name+literals,
+currency-policy gate, predicate signature, doc drift. Unblocks dna-trace
+WS-WRITE-02 false positive (_io naming).</item>
 </CHANGE_SUMMARY>
 */
 
@@ -665,7 +674,9 @@ describe("PBP Compiler Pipeline", () => {
 
     const entity = result.entityIndex.values().next().value as unknown as Record<string, unknown>;
     expect(entity.name).toBe("Warpgogol UK");
-    expect(entity.summary).toBe("German summary");
+    // RFC-1328 (AMD-005): prose never crosses locales — the uk doc omits
+    // summary deliberately, so the de text must not be restored.
+    expect(entity.summary).toBeUndefined();
     expect(result.fallbackReport.fallbacks.length).toBeGreaterThan(0);
   });
 });

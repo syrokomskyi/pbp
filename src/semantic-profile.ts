@@ -3,11 +3,12 @@
 <purpose>PBP semantic profile adapter — maps PBP compiler output to SemanticSiteProfile (RFC-0469).</purpose>
 <non-goals>
   <item>Does not define SemanticSiteProfile — that lives in @warpgogol/werkstatt-shared/semantic.</item>
-  <item>Does not implement the compiler — delegates to @warpgogol/werkstatt-site/pbp/compiler.</item>
+  <item>Does not implement the compiler — delegates to ./compiler (the framework-free pipeline in this package).</item>
   <item>Does not handle page-level semantic models — use buildPbpPageSemanticModel instead.</item>
 </non-goals>
 </MODULE_CONTRACT>
 <CHANGE_SUMMARY>
+  <item>RFC-1328 review (F-3/F-8): defaultLocale param replaces the hardcoded de; currency-pricing-policy scan gated by isPublicPbpEntity.</item>
   <item>RFC-0743: added loadTargetCurrencies — extracts target currencies from CurrencyPricingPolicy, compiler errors propagate (review fix E-1).</item>
   <item>RFC-1075: populate canonicalUri on SemanticOffer from offering entity ID.</item>
   <item>RFC-1097: step 6 — compass.migrate codemod run
@@ -28,6 +29,7 @@ import {
 import { deriveCanonicalUri } from "@warpgogol/werkstatt-shared/semantic/canonical-uri";
 import { compilePbpProfile } from "./compiler/index.ts";
 import type { PbpCompilerResult } from "./compiler/types.ts";
+import { isPublicPbpEntity } from "./publication.ts";
 
 // RFC-1119: buildPageSemanticModel stays in the Astro adapter — import it from
 // @warpgogol/werkstatt-site/pbp/semantic-model (it uses astro:content + import.meta.glob).
@@ -38,16 +40,19 @@ export async function loadTargetCurrencies(
   sourceDirectory: string,
   locale: string,
   io: WorkspaceIO = createDefaultIO().io,
+  defaultLocale: string = locale,
 ): Promise<Array<{ code: string; label: string }>> {
   const result = await compilePbpProfile({
     sourceDirectory,
     locale,
-    defaultLocale: "de",
+    defaultLocale,
     strictness: "production",
     io,
   });
   for (const entity of result.entityIndex.values()) {
-    if (entity.type === "currency-pricing-policy") {
+    // RFC-1328 (AMD-005): the entity index is pre-gate — a draft/private
+    // policy must not drive public currency options.
+    if (entity.type === "currency-pricing-policy" && isPublicPbpEntity(entity)) {
       const policy = entity as unknown as {
         baseCurrency: string;
         targetCurrencies: Record<string, { currency: string }>;
@@ -67,11 +72,12 @@ export async function buildPbpSemanticProfile(
   siteUrl: URL | string,
   sourceDirectory: string,
   io: WorkspaceIO = createDefaultIO().io,
+  defaultLocale: string = locale,
 ): Promise<SemanticSiteProfile> {
   const result = await compilePbpProfile({
     sourceDirectory,
     locale,
-    defaultLocale: "de",
+    defaultLocale,
     strictness: "production",
     io,
   });

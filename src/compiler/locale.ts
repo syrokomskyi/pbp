@@ -6,6 +6,7 @@
 </non-goals>
 </MODULE_CONTRACT>
 <CHANGE_SUMMARY>
+  <item>RFC-1328 review (F-2): LOCALE_SCOPED_FIELDS — prose keys absent from an existing locale doc are never restored from the default doc (wrong-language merge).</item>
   <item>RFC-0781 — Accept locale-aware index, use shared deepMerge with JSON Merge Patch semantics.</item>
   <item>RFC-1097: step 6 — compass.migrate codemod run
 
@@ -21,6 +22,14 @@ import type { PbpEntity } from "../envelope.ts";
 import type { PbpFallbackReport, PbpFallbackEntry } from "../locale.ts";
 import type { LocaleAwareEntityIndex } from "./entity-index.ts";
 import { deepMerge } from "../utils/deep-merge.ts";
+
+/**
+ * RFC-1328 (AMD-005): prose fields are authored per locale — when a
+ * target-locale document exists, these keys are never inherited from the
+ * default document. Structural/identity fields still merge (names,
+ * identifiers, addresses are locale-invariant).
+ */
+const LOCALE_SCOPED_FIELDS = ["statement", "statementLang", "summary", "description"] as const;
 
 export interface LocaleResolutionResult {
   resolved: Map<string, PbpEntity>;
@@ -73,6 +82,15 @@ export async function resolveLocales(
       defaultEntity as unknown as Record<string, unknown>,
       targetEntity as unknown as Record<string, unknown>,
     ) as unknown as PbpEntity;
+    // RFC-1328 (AMD-005): a locale document is authoritative for its prose —
+    // fields the seed/author omitted deliberately (e.g. `description`, which
+    // has no locale channel) must not be restored from the default doc, or
+    // primary-language text ships under the target locale.
+    const targetRecord = targetEntity as unknown as Record<string, unknown>;
+    const mergedRecord = merged as unknown as Record<string, unknown>;
+    for (const field of LOCALE_SCOPED_FIELDS) {
+      if (!(field in targetRecord)) delete mergedRecord[field];
+    }
     resolved.set(id, merged);
 
     const diffPaths = findDiffPaths(

@@ -10,6 +10,15 @@
   <item>RFC-1097: sweep — werkstatt-site clean, zero diagnostics workspace-wide
 
 Sweep batch 5: 90 Compass headers on headerless site files (PBP entities/projections/schemas, .d.ts, .css, barrels), 211 non-goals (CONTRACT-03, mostly re-export shims), ~265 purpose expansions (CONTRACT-02/PURPOSE-02), 2 CHANGE_SUMMARY additions, boilerplate purpose rewrite. Policy: domain/ui/icons/gen excludedPath (2326 generated-icon diags), .template.css excludedPath, .e2e.config.ts testPattern. compass.validate --mode error now returns 0 diagnostics across the whole workspace.</item>
+  <item>RFC-1328: review fix pass: envelope fields in vendored schema defs, locale merge prose guard, manifest defaultLocale threading
+
+F-1 blocking: inject statementByLocale/localeNeutral into every exported pbp
+def so producers can self-validate AMD-005 bundles. F-2/F-3: LOCALE_SCOPED_FIELDS
+never merge onto existing locale docs; defaultLocale param replaces the
+hardcoded de across semantic profile, currency, referral capacity. F-4..F-10:
+statementLang rewrite, prose drops on clones/variants, INTAKE-12 name+literals,
+currency-policy gate, predicate signature, doc drift. Unblocks dna-trace
+WS-WRITE-02 false positive (_io naming).</item>
 </CHANGE_SUMMARY>
 */
 
@@ -100,7 +109,7 @@ export interface PbpJcsCanonicalization {
  * `draft`/`suspended`/`retired`/`superseded` entities never project).
  */
 export function isPublicPbpEntity(entity: {
-  status: string;
+  status?: string;
   publication?: { visibility?: string };
 }): boolean {
   return entity.status === "published" && entity.publication?.visibility !== "private";
