@@ -84,7 +84,7 @@ describe("RFC-1119 boundary", () => {
     ]);
   });
 
-  it("no pbp @2 namespace strings anywhere", () => {
+  it.skipIf(!IN_MONOREPO)("no pbp @2 namespace strings anywhere", () => {
     // Test files are excluded — parser fixtures legitimately exercise @2 acceptance.
     const offenders: string[] = [];
     for (const file of walk(join(REPO_ROOT, "packages"))) {
