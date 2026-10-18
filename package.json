@@ -472,7 +472,9 @@
   "devDependencies": {
     "@types/big.js": "^7.0.0",
     "@types/node": "^26.5.1",
+    "eslint": "^10.10.0",
     "typescript": "~5.9.3",
+    "typescript-eslint": "8.70.0",
     "vitest": "^5.0.0"
   },
   "publishConfig": {

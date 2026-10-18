@@ -18,6 +18,9 @@ import { describe, expect, it } from "vitest";
 const PKG_ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const REPO_ROOT = join(PKG_ROOT, "..", "..");
 const SITE_DOMAIN = join(REPO_ROOT, "packages/werkstatt-site/src/domain");
+// The standalone pbp extraction has no sibling packages or services; the
+// cross-package boundary probes only run inside the monorepo workshop.
+const IN_MONOREPO = existsSync(SITE_DOMAIN);
 
 function* walk(dir: string): Generator<string> {
   for (const entry of readdirSync(dir)) {
@@ -58,7 +61,7 @@ describe("RFC-1119 boundary", () => {
     expect(offenders).toEqual([]);
   });
 
-  it("werkstatt-site no longer contains pbp domain directories", () => {
+  it.skipIf(!IN_MONOREPO)("werkstatt-site no longer contains pbp domain directories", () => {
     for (const gone of [
       "pbp/compiler",
       "pbp/entities",
@@ -93,7 +96,7 @@ describe("RFC-1119 boundary", () => {
     expect(offenders).toEqual([]);
   });
 
-  it("rate-fetcher does not import werkstatt-site", () => {
+  it.skipIf(!IN_MONOREPO)("rate-fetcher does not import werkstatt-site", () => {
     const svcDir = join(REPO_ROOT, "services/rate-fetcher");
     const pkg = JSON.parse(readFileSync(join(svcDir, "package.json"), "utf8")) as {
       dependencies?: Record<string, string>;
